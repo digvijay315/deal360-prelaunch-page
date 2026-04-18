@@ -1,6 +1,11 @@
 "use client"
 
 import React, { useEffect, useState } from "react";
+import { publicAsset } from "@/components/lib/assetUrl";
+import { useRouter } from "@/i18n/navigation";
+import Link from "next/link";
+import { RegistrationModal } from "../RegistrationModal/RegistrationModal";
+import { useTranslations,useLocale } from "next-intl";
 
 // ─── Shared Icon Components ───────────────────────────────────────────────────
 
@@ -99,30 +104,11 @@ const AppStoreButton: React.FC = () => (
       </span>
     </div>
     {/* SOON ribbon */}
-    <div
-      className="absolute flex items-center justify-end overflow-hidden"
-      style={{
-        transform: "rotate(-31.485deg)",
-        left: 47,
-        top: -6,
-        width: 109,
-        height: 23,
-        background: "var(--color-aquamarine)",
-        padding: "4px 20px 4px 48px",
-      }}
-    >
-      <span
-        style={{
-          color: "var(--color-text)",
-          fontFamily: "Poppins, sans-serif",
-          fontSize: 14,
-          fontWeight: 500,
-          lineHeight: "110%",
-        }}
-      >
-        SOON
-      </span>
-    </div>
+      <div className="absolute top-[15px] left-[44px] w-[109px] h-[17px] bg-[#7FFFD4] flex items-center justify-center overflow-hidden -rotate-[31.485deg] origin-center">
+                  <span className="text-[#4B4B4B] ml-2 font-poppins font-medium text-[8px] leading-[110%] whitespace-nowrap">
+                    COMING SOON
+                  </span>
+                </div>
   </div>
 );
 
@@ -196,69 +182,80 @@ const GooglePlayButton: React.FC = () => (
       </span>
     </div>
     {/* SOON ribbon */}
-    <div
-      className="absolute flex items-center justify-end overflow-hidden"
-      style={{
-        transform: "rotate(-31.485deg)",
-        left: 47,
-        top: -6,
-        width: 109,
-        height: 23,
-        background: "var(--color-primary)",
-        padding: "4px 20px 4px 48px",
-      }}
-    >
-      <span
-        style={{
-          color: "#FFF",
-          fontFamily: "Poppins, sans-serif",
-          fontSize: 14,
-          fontWeight: 500,
-          lineHeight: "110%",
-        }}
-      >
-        SOON
-      </span>
-    </div>
+
+      <div className="absolute top-[15px] left-[44px] w-[109px] h-[17px] bg-[var(--color-primary)] flex items-center justify-center overflow-hidden -rotate-[31.485deg] origin-center">
+                  <span className="text-[#fff] ml-2 font-poppins font-medium text-[8px] leading-[110%] whitespace-nowrap">
+                    COMING SOON
+                  </span>
+                </div>
   </div>
 );
 
 // ─── Main HeroSlider Component ────────────────────────────────────────────────
 
-const BG_IMAGE =
-  "https://api.builder.io/api/v1/image/assets/TEMP/57bfa1e0591736bdb4847afeba6d0d601597ab3b?width=3840";
-const PHONE_IMAGE =
-  "https://api.builder.io/api/v1/image/assets/TEMP/cc2e8f2fb53927b6de1860617202d581e381fd60?width=899";
 
 const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // const t = useTranslations(`heroslide.slides.${currentSlide}`);
+
+  const [registration_modal, setregistration_modal] = useState(false)
 
   const prevSlide = () => setCurrentSlide((p) => (p === 0 ? 2 : p - 1));
   const nextSlide = () => setCurrentSlide((p) => (p === 2 ? 0 : p + 1));
   const goToSlide = (i: number) => setCurrentSlide(i);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
-  }, 2000);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
+    }, 2000);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
+
+  const locale = useLocale();
 
   return (
     <section
-      className="relative w-full  md:mt-10 md:mb-20"
+      className="relative w-full   md:mb-20 font-[Poppins]"
       style={{ borderRadius: "50px 50px 0 0" }}
     >
+
+      <style>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        .slide-container {
+          position: absolute;
+          inset: 0;
+          transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        .slide-container.active {
+          position: relative;
+          opacity: 1;
+          visibility: visible;
+          animation: slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      `}</style>
+
       {/* ═══════════════════════════════════════════════════════════════════════
           SLIDE 1
           ═══════════════════════════════════════════════════════════════════════ */}
       <div className={currentSlide === 0 ? "flex" : "hidden"}>
         <div
-          className="relative w-full flex "
+          className="relative w-full flex"
           style={{
             minHeight: "clamp(600px, 80vh, 929px)",
-            backgroundImage: `url('${BG_IMAGE}')`,
+            backgroundImage: `url('${publicAsset('/herobg1.png')}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -273,22 +270,22 @@ const HeroSection: React.FC = () => {
           /> */}
 
           {/* Phone image — absolute, right side, desktop only */}
-          <div
-            className="absolute hidden lg:block 2xl:right-[15%] md:right-[5%]  "
-            style={{
-              // right: "5%",
-              top: "5%",
-              height: "100%",
-              width: "clamp(280px, 24vw, 450px)",
-              
-            }}
-          >
-            <img
-              src={PHONE_IMAGE}
-              alt="Dubai real estate app preview"
-              className="w-full h-full object-contain object-bottom "
-            />
-          </div>
+  <div
+  className="absolute hidden lg:block"
+  style={{
+    top: "5%",
+    height: "100%",
+    width: "clamp(280px, 24vw, 450px)",
+    right: locale === "en" ? "5%" : "auto",
+    left: locale === "ar" ? "5%" : "auto",
+  }}
+>
+  <img
+    src={publicAsset("heromobile.png")}
+    alt="Dubai real estate app preview"
+    className="w-full h-full object-contain object-bottom"
+  />
+</div>
 
           {/* Left content */}
           <div
@@ -311,8 +308,13 @@ const HeroSection: React.FC = () => {
                 maxWidth: 743,
               }}
             >
-              Dubai real estate is about to{" "}
-              <span style={{ color: "var(--color-primary)" }}>change</span>.
+   {t.rich("title", {
+    highlight: (chunks) => (
+      <span style={{ color: "var(--color-primary)" }}>
+        {chunks}
+      </span>
+    ),
+  })}
             </h1>
 
             {/* Subtitle */}
@@ -325,45 +327,50 @@ const HeroSection: React.FC = () => {
                 maxWidth: 743,
               }}
             >
-              A{" "}
-              <strong style={{ fontWeight: 700 }}>revolutionary platform</strong>{" "}
-              built around verified agents, real demand, and private
-              opportunities.
+           {t.rich("subtitle", {
+    bold: (chunks) => (
+      <strong style={{ fontWeight: 700 }}>{chunks}</strong>
+    ),
+  })}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  color: "var(--color-text)",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 43px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Requirement
-              </button>
-              <button
-                className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  background: "var(--color-primary)",
-                  color: "#fff",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 44px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Listing Intent
-              </button>
+              <Link href="/buyer-requirements">
+                <button
+                  className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    color: "var(--color-text)",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 43px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                  {t("cta.submitRequirement")}
+                </button>
+              </Link>
+              <Link href="/list-proparty">
+                <button
+                  className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    background: "var(--color-primary)",
+                    color: "#fff",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 44px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                  {t("cta.submitListing")}
+                </button>
+              </Link>
             </div>
 
             {/* Registration Card */}
@@ -376,7 +383,7 @@ const HeroSection: React.FC = () => {
                 backdropFilter: "blur(8px)",
                 padding:
                   "clamp(20px, 3.5vw, 41px) clamp(16px, 4.5vw, 65px) clamp(20px, 3.5vw, 52px)",
-                  
+
               }}
             >
               {/* Card title */}
@@ -388,60 +395,33 @@ const HeroSection: React.FC = () => {
                   color: "var(--color-text)",
                 }}
               >
-                <strong style={{ fontWeight: 700 }}>Register now!</strong>{" "}
-                <span style={{ fontWeight: 500 }}>
-                  Early access spots available
-                </span>
+              <strong>{t("registerCard.titleStrong")}</strong>{" "}
+  <span>{t("registerCard.titleLight")}</span>
               </p>
 
               {/* Features */}
-              <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Priority visibility
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Founding-only benefits
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircleIcon />
-                  <span
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontSize: 16,
-                      color: "var(--color-text)",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Early feature access
-                  </span>
-                </div>
-              </div>
+         <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
+  {t.raw("registerCard.features").map((item: string, index: number) => (
+    <div key={index} className="flex items-center gap-3">
+      <CheckCircleIcon />
+      <span
+        style={{
+          fontFamily: "Poppins, sans-serif",
+          fontSize: 16,
+          color: "var(--color-text)",
+          fontWeight: 500,
+        }}
+      >
+        {item}
+      </span>
+    </div>
+  ))}
+</div>
 
               {/* Bottom row */}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <button
+                  onClick={() => setregistration_modal(true)}
                   className="bg-[#7FFFD4] flex items-center gap-2 rounded-lg font-semibold transition-opacity hover:opacity-90"
                   style={{
                     // background: "var(--color-aquamarine)",
@@ -456,7 +436,7 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                   <LogOutIcon />
-                  Pre - Registration
+                 {t("registerCard.preRegister")}
                 </button>
                 <div className="flex flex-col gap-2">
                   <AppStoreButton />
@@ -473,10 +453,10 @@ const HeroSection: React.FC = () => {
           ═══════════════════════════════════════════════════════════════════════ */}
       <div className={currentSlide === 1 ? "block" : "hidden"}>
         <div
-          className="relative w-full flex "
+          className="relative w-full flex"
           style={{
             minHeight: "clamp(600px, 80vh, 929px)",
-            backgroundImage: "url('/herobg2.png')",
+            backgroundImage: `url('${publicAsset('/herobg2 (2).png')}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -490,22 +470,26 @@ const HeroSection: React.FC = () => {
             }}
           /> */}
 
-        {/* Phone image — absolute, right side, desktop only */}
+          {/* Phone image — absolute, right side, desktop only */}
           <div
             className="absolute hidden lg:block 2xl:right-[15%] md:right-[5%]  "
             style={{
-              // right: "5%",
-              top: "5%",
-              height: "100%",
-              width: "clamp(280px, 24vw, 450px)",
-              
+              right: locale === "en" ? "0%" : "auto",
+            left: locale === "ar" ? "0%" : "auto",
+              top: "10%",
+              height: "90%",
+              // width: "clamp(280px, 24vw, 450px)",
+
             }}
           >
-            {/* <img
-              src={PHONE_IMAGE}
+            <img
+              src={publicAsset('/herolaptop.png')}
               alt="Dubai real estate app preview"
-              className="w-full h-full object-contain object-bottom "
-            /> */}
+              className="w-full h-full object-cover object-bottom "
+                style={{
+      transform: locale === "ar" ? "scaleX(-1)" : "scaleX(1)",
+    }}
+            />
           </div>
 
           {/* Left content */}
@@ -521,16 +505,21 @@ const HeroSection: React.FC = () => {
           >
             {/* Headline */}
             <h1
-              className="font-semibold leading-[110%] mb-6"
+              className="font-semibold leading-[110%] mb-6 md:max-w-[743px] 2xl:max-w-[800px]"
               style={{
                 fontFamily: "Poppins, sans-serif",
                 color: "var(--color-text)",
                 fontSize: "clamp(2rem, 4.5vw, 4.6875rem)",
-                maxWidth: 743,
+                // maxWidth: 793,
               }}
             >
-              A <span style={{ color: "var(--color-primary)" }}>smarter</span> way to {""}
-             <span className="whitespace-nowrap">navigate properties</span> 
+               {t.rich("title", {
+    highlight: (chunks) => (
+      <span style={{ color: "var(--color-primary)" }}>
+        {chunks}
+      </span>
+    ),
+  })}
             </h1>
 
             {/* Subtitle */}
@@ -543,51 +532,56 @@ const HeroSection: React.FC = () => {
                 maxWidth: 743,
               }}
             >
-              
-              <strong style={{ fontWeight: 700 }}>We help</strong>{" "}
-               buyers, sellers, agents, brokerages, and investors make clearer property 
-              decisions by aligning real demand with 
-              verified supply launching in Dubai and expanding across the UAE. 
+
+                     {t.rich("subtitle", {
+    bold: (chunks) => (
+      <strong style={{ fontWeight: 700 }}>{chunks}</strong>
+    ),
+  })}
             </p>
 
-     {/* CTA Buttons */}
+            {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  color: "var(--color-text)",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 43px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Requirement
-              </button>
-              <button
-                className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  background: "var(--color-primary)",
-                  color: "#fff",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 44px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Listing Intent
-              </button>
+              <Link href="/buyer-requirements">
+                <button
+                  className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    color: "var(--color-text)",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 43px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                  {t("cta.submitRequirement")}
+                </button>
+              </Link>
+              <Link href="/list-proparty">
+                <button
+                  className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    background: "var(--color-primary)",
+                    color: "#fff",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 44px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                   {t("cta.submitListing")}
+                </button>
+              </Link>
             </div>
 
             {/* Registration Card */}
             <div
-               className="rounded-2xl  w-full 2xl:absolute 2xl:-bottom-10 relative md:-bottom-25 "
+              className="rounded-2xl  w-full 2xl:absolute 2xl:-bottom-10 relative md:-bottom-25 "
               style={{
                 maxWidth: 705,
                 background: "rgba(255,255,255,0.55)",
@@ -606,60 +600,33 @@ const HeroSection: React.FC = () => {
                   color: "var(--color-text)",
                 }}
               >
-                <strong style={{ fontWeight: 700 }}>Register now!</strong>{" "}
-                <span style={{ fontWeight: 500 }}>
-                  Early access spots available
-                </span>
+                           <strong>{t("registerCard.titleStrong")}</strong>{" "}
+  <span>{t("registerCard.titleLight")}</span>
               </p>
 
               {/* Features */}
-              <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Priority visibility
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Founding-only benefits
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircleIcon />
-                  <span
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontSize: 16,
-                      color: "var(--color-text)",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Early feature access
-                  </span>
-                </div>
-              </div>
+                     <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
+  {t.raw("registerCard.features").map((item: string, index: number) => (
+    <div key={index} className="flex items-center gap-3">
+      <CheckCircleIcon />
+      <span
+        style={{
+          fontFamily: "Poppins, sans-serif",
+          fontSize: 16,
+          color: "var(--color-text)",
+          fontWeight: 500,
+        }}
+      >
+        {item}
+      </span>
+    </div>
+  ))}
+</div>
 
               {/* Bottom row */}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <button
+                  onClick={() => setregistration_modal(true)}
                   className="bg-[#7FFFD4] flex items-center gap-2 rounded-lg font-semibold transition-opacity hover:opacity-90"
                   style={{
                     // background: "var(--color-aquamarine)",
@@ -674,7 +641,7 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                   <LogOutIcon />
-                  Pre - Registration
+                   {t("registerCard.preRegister")}
                 </button>
                 <div className="flex flex-col gap-2">
                   <AppStoreButton />
@@ -689,12 +656,12 @@ const HeroSection: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════════
           SLIDE 3
           ═══════════════════════════════════════════════════════════════════════ */}
-       <div className={currentSlide === 2 ? "block" : "hidden"}>
+      <div className={currentSlide === 2 ? "block" : "hidden"}>
         <div
-          className="relative w-full flex "
+          className="relative w-full flex"
           style={{
             minHeight: "clamp(600px, 80vh, 929px)",
-            backgroundImage: "url('/herobg3.png')",
+            backgroundImage: `url('${publicAsset('/herobg3.png')}')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -708,19 +675,20 @@ const HeroSection: React.FC = () => {
             }}
           /> */}
 
-        {/* Phone image — absolute, right side, desktop only */}
+          {/* Phone image — absolute, right side, desktop only */}
           <div
             className="absolute hidden lg:block 2xl:right-[15%] md:right-[5%]  "
             style={{
-              right: "0%",
+              right: locale === "en" ? "0%" : "auto",
+            left: locale === "ar" ? "0%" : "auto",
               top: "10%",
               height: "100%",
               // width: "clamp(280px, 24vw, 450px)",
-              
+
             }}
           >
             <img
-              src='./heromonitor.png'
+              src={publicAsset('/heromonitor.png')}
               alt="Dubai real estate app preview"
               className="w-full h-full object-cover object-bottom "
             />
@@ -747,8 +715,13 @@ const HeroSection: React.FC = () => {
                 maxWidth: 743,
               }}
             >
-              Clearer intent.  <span style={{ color: "var(--color-primary)" }}>{""}Better </span>
-             <span className="whitespace-nowrap">decisions.</span> 
+                         {t.rich("title", {
+    highlight: (chunks) => (
+      <span style={{ color: "var(--color-primary)" }}>
+        {chunks}
+      </span>
+    ),
+  })}
             </h1>
 
             {/* Subtitle */}
@@ -761,50 +734,57 @@ const HeroSection: React.FC = () => {
                 maxWidth: 743,
               }}
             >
-              
-              
-             Deal 360 is a <strong style={{ fontWeight: 700 }}>verification-first</strong>{" "}  real estate platform aligning buyers, sellers, 
-             agents, brokerages, and investors with real supply and real demand — not recycled leads.
+
+
+          {t.rich("subtitle", {
+    bold: (chunks) => (
+      <strong style={{ fontWeight: 700 }}>{chunks}</strong>
+    ),
+  })}
             </p>
 
-     {/* CTA Buttons */}
+            {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  color: "var(--color-text)",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 43px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Requirement
-              </button>
-              <button
-                className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
-                style={{
-                  background: "var(--color-primary)",
-                  color: "#fff",
-                  boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
-                  padding: "16px 44px",
-                  fontFamily: "Poppins, sans-serif",
-                  fontWeight: 600,
-                  fontSize: "clamp(14px, 1.1vw, 16px)",
-                  height: 50,
-                  minWidth: "clamp(140px, 15vw, 256px)",
-                }}
-              >
-                Submit Listing Intent
-              </button>
+              <Link href="/buyer-requirements">
+                <button
+                  className="flex bg-[#7FFFD4] items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    color: "var(--color-text)",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 43px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                  {t("cta.submitRequirement")}
+                </button>
+              </Link>
+              <Link href="/list-proparty">
+                <button
+                  className="flex items-center justify-center rounded-lg font-semibold transition-opacity hover:opacity-90"
+                  style={{
+                    background: "var(--color-primary)",
+                    color: "#fff",
+                    boxShadow: "0 0 2px 0 rgba(0,0,0,0.35)",
+                    padding: "16px 44px",
+                    fontFamily: "Poppins, sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(14px, 1.1vw, 16px)",
+                    height: 50,
+                    minWidth: "clamp(140px, 15vw, 256px)",
+                  }}
+                >
+                  {t("cta.submitListing")}
+                </button>
+              </Link>
             </div>
 
             {/* Registration Card */}
             <div
-               className="rounded-2xl  w-full 2xl:absolute 2xl:-bottom-10 relative md:-bottom-25 "
+              className="rounded-2xl  w-full 2xl:absolute 2xl:-bottom-10 relative md:-bottom-25 "
               style={{
                 maxWidth: 705,
                 background: "rgba(255,255,255,0.55)",
@@ -823,60 +803,33 @@ const HeroSection: React.FC = () => {
                   color: "var(--color-text)",
                 }}
               >
-                <strong style={{ fontWeight: 700 }}>Register now!</strong>{" "}
-                <span style={{ fontWeight: 500 }}>
-                  Early access spots available
-                </span>
+                                      <strong>{t("registerCard.titleStrong")}</strong>{" "}
+  <span>{t("registerCard.titleLight")}</span>
               </p>
 
               {/* Features */}
-              <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Priority visibility
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircleIcon />
-                    <span
-                      style={{
-                        fontFamily: "Poppins, sans-serif",
-                        fontSize: 16,
-                        color: "var(--color-text)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      Founding-only benefits
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircleIcon />
-                  <span
-                    style={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontSize: 16,
-                      color: "var(--color-text)",
-                      fontWeight: 500,
-                    }}
-                  >
-                    Early feature access
-                  </span>
-                </div>
-              </div>
+                                 <div className="flex flex-wrap gap-x-8 gap-y-3 mb-6">
+  {t.raw("registerCard.features").map((item: string, index: number) => (
+    <div key={index} className="flex items-center gap-3">
+      <CheckCircleIcon />
+      <span
+        style={{
+          fontFamily: "Poppins, sans-serif",
+          fontSize: 16,
+          color: "var(--color-text)",
+          fontWeight: 500,
+        }}
+      >
+        {item}
+      </span>
+    </div>
+  ))}
+</div>
 
               {/* Bottom row */}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <button
+                  onClick={() => setregistration_modal(true)}
                   className="bg-[#7FFFD4] flex items-center gap-2 rounded-lg font-semibold transition-opacity hover:opacity-90"
                   style={{
                     // background: "var(--color-aquamarine)",
@@ -891,7 +844,7 @@ const HeroSection: React.FC = () => {
                   }}
                 >
                   <LogOutIcon />
-                  Pre - Registration
+                  {t("registerCard.preRegister")}
                 </button>
                 <div className="flex flex-col gap-2">
                   <AppStoreButton />
@@ -909,7 +862,7 @@ const HeroSection: React.FC = () => {
         className="hidden md:flex absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-30 items-center justify-center w-10 h-16 hover:opacity-70 transition-opacity"
         aria-label="Previous slide"
       >
-        <svg width="31" height="62" viewBox="0 0 31 62" fill="none">
+        <svg width="31" height="31" viewBox="0 0 31 62" fill="none">
           <path
             d="M30 1L2 31L30 61"
             stroke="#4B4B4B"
@@ -925,7 +878,7 @@ const HeroSection: React.FC = () => {
         className="hidden absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-30 md:flex items-center justify-center w-10 h-16 hover:opacity-70 transition-opacity"
         aria-label="Next slide"
       >
-        <svg width="31" height="62" viewBox="0 0 31 62" fill="none">
+        <svg width="31" height="31" viewBox="0 0 31 62" fill="none">
           <path
             d="M1 1L29 31L1 61"
             stroke="#4B4B4B"
@@ -936,6 +889,13 @@ const HeroSection: React.FC = () => {
         </svg>
       </button>
 
+
+
+      {
+        registration_modal && (
+          <RegistrationModal open={registration_modal} onOpenChange={setregistration_modal} />
+        )
+      }
       {/* ─── Dot Indicators ────────────────────────────────────────────────── */}
       {/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-30">
         <button

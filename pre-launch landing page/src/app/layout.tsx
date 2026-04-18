@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -12,25 +13,22 @@ export const metadata = {
   description: "Real Estate Platform",
 };
 
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en" className={poppins.variable}>
-//       <body className="font-sans">
-//         {children}
-//       </body>
-//     </html>
-//   );
-// }
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  const locale = "en"; // 👈 static for now
+
+  const messages = (await import(`../messages/${locale}.json`)).default;
+
   return (
-    <html lang="en" className={`${poppins.variable} light`}>
+    <html lang={locale} className={`${poppins.variable} light`}>
       <body className="font-sans bg-theme text-theme transition-colors duration-300">
-        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
