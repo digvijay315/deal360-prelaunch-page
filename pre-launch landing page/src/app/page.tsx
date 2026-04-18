@@ -1,3 +1,5 @@
+
+"use client"
 // import { AgentsSection } from '@/components/web/AgentsSection'
 // import Brokerage from '@/components/web/Brokerage'
 // import { HeroSection } from '@/components/web/HeroSection'
@@ -14,7 +16,7 @@
 // import SubHeroSection from '@/components/web/SuBHeroSection'
 import SmarterFilters from '@/components/web/SmarterFilters'
 import WhatsComing from '@/components/web/WhatsComing'
-// import HeroSection from '@/components/web/HeroSection'
+import HeroSection from '@/components/web/HeroSection'
 import StartWithRequirements from '@/components/web/startwith_requirments'
 import ForAgents from '@/components/web/for_agents'
 import ForBrockerage from '@/components/web/for_brokerage'
@@ -25,13 +27,6 @@ import PricingGlowWrapper from '@/components/web/price'
 import ConnectionVerification from '@/components/web/ConnectionVerification'
 import Rewards from '@/components/web/rewards'
 import RewardsCard from '@/components/web/rewards_card'
-
-import dynamic from "next/dynamic";
-
-const HeroSection = dynamic(
-  () => import('@/components/web/HeroSection'),
-  { ssr: false }
-);
 
 export default function Home() {
   return (
