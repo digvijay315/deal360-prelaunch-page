@@ -17,7 +17,7 @@ type FieldErrors = Partial<Record<'fullName' | 'iAm' | 'email' | 'phone' | 'refe
 
 const isValidPhone = (p: string) => /^\+?[\d\s\-().]{7,20}$/.test(p.trim())
 
-export function UserForm() {
+export default function UserForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     iAm: '',

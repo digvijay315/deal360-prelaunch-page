@@ -25,7 +25,7 @@ type FieldErrors = Partial<
   >
 >
 
-export function CompanyForm() {
+export default function CompanyForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     serviceCategory: '',

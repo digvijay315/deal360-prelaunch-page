@@ -1,57 +1,102 @@
-import Header from "@/components/Layout/Header";
-// import HeroSection from "@/components/LandingPage/HeroSection";
-import LaunchingSection from "@/components/LandingPage/ConnectionVerification";
-import WhatIsComing from "@/components/LandingPage/what's_coming";
-import Image from "next/image";
-import Protal from "@/components/LandingPage/startwith_requirments";
-import Requirment from "@/components/LandingPage/requirments";
-import Verification from "@/components/LandingPage/realstatework";
-import ForAgents from "@/components/LandingPage/for_agents";
-import ForBrockerage from "@/components/LandingPage/for_brokerage";
-import SmartFilter from "@/components/LandingPage/smart_filter";
-import BuySellControll from "@/components/LandingPage/buy_sell_controll";
-import PropertyManager from "@/components/LandingPage/property_manager";
-import NotaPortal from "@/components/LandingPage/not_portal";
-import EarlyAccessProgram from "@/components/LandingPage/early_access_program";
-import Pricing from "@/components/LandingPage/pricing";
-import AgentPricingSection from "@/components/LandingPage/agent_pricingcard";
-import BrokeragePricingSection from "@/components/LandingPage/brokerage_pricingcard";
-import PricingGlowWrapper from "@/components/LandingPage/price";
-import Rewards from "@/components/LandingPage/rewards";
-import RewardsCard from "@/components/LandingPage/rewards_card";
-import Footer from "@/components/Layout/Footer";
-import ConnectionVerification from "@/components/LandingPage/ConnectionVerification";
-import RealstateWork from "@/components/LandingPage/realstatework";
-import StartWithRequirements from "@/components/LandingPage/startwith_requirments";
-import HeroSection from "@/components/LandingPage/HeroSection";
+// import { AgentsSection } from '@/components/web/AgentsSection'
+// import Brokerage from '@/components/web/Brokerage'
+// import { HeroSection } from '@/components/web/HeroSection'
+// import { IncentivesSection } from '@/components/web/IncentivesSection'
+// import PropertyIntent from '@/components/web/IntentSection'
+// import Joindeal from '@/components/web/Joindeal'
+// import OwnersInControl from '@/components/web/OwnersInControl'
+// import NotAPortalSection from '@/components/web/NotAPortalSection'
+// import { PortalSection } from '@/components/web/PortalSection'
+// import { PricingSection } from '@/components/web/PricingSection'
+// import PropertyManager from '@/components/web/PropertyManager'
+// import ConnectionVerification from '@/components/web/ConnectionVerification'
+// import { VerificationSection } from '@/components/web/VerificationSection'
+// import SubHeroSection from '@/components/web/SuBHeroSection'
+import SmarterFilters from '@/components/web/SmarterFilters'
+import WhatsComing from '@/components/web/WhatsComing'
+import HeroSection from '@/components/web/HeroSection'
+import StartWithRequirements from '@/components/web/startwith_requirments'
+import ForAgents from '@/components/web/for_agents'
+import ForBrockerage from '@/components/web/for_brokerage'
+import RealstateWork from '@/components/web/realstatework'
+import EarlyAccessProgram from '@/components/web/early_access_program'
+import Pricing from '@/components/web/pricing'
+import PricingGlowWrapper from '@/components/web/price'
+import ConnectionVerification from '@/components/web/ConnectionVerification'
+import Rewards from '@/components/web/rewards'
+import RewardsCard from '@/components/web/rewards_card'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-theme text-theme">
-       <main className="w-full min-h-screen bg-theme">
-      <Header/>
-      {/* <HeroSection/> */}
-      <HeroSection/>
-      <WhatIsComing/>
-      <StartWithRequirements/>
-      <ConnectionVerification/>
-      
-      {/* <Protal/> */}
-      {/* <Requirment/> */}
-      <ForAgents/>
-      <ForBrockerage/>
-      <SmartFilter/>
-      {/* <BuySellControll/> */}
-      {/* <PropertyManager/> */}
-      {/* <NotaPortal/> */}
-        <RealstateWork/>
-      <EarlyAccessProgram/>
-      <Pricing/>
-      <PricingGlowWrapper/>
-      <Rewards/>
-      <RewardsCard/>
-      <Footer/>
-    </main>
+    <div className="bg-[#EDEEF0] overflow-x-hidden dark:bg-black font-[Poppins]">
+
+      {/* Requirements / Hero */}
+      <section id="hero">
+        {/* <HeroSection /> */}
+        <HeroSection />
+      </section>
+
+      <WhatsComing />
+
+      <StartWithRequirements />
+
+      <ConnectionVerification />
+
+      <section id="agent">
+        <ForAgents />
+      </section>
+
+      <section id="brokerage">
+        <ForBrockerage />
+      </section>
+
+      <SmarterFilters />
+
+      <RealstateWork />
+
+      <EarlyAccessProgram />
+
+      <section id="plan">
+      <Pricing />
+      </section>
+
+      <PricingGlowWrapper />
+
+      <Rewards />
+
+      <RewardsCard />
+
+
+      {/* Buying Intent */}
+      {/* <section id="buying-intent">
+        <PropertyIntent />
+      </section> */}
+
+      {/* <VerificationSection /> */}
+
+      {/* Agent */}
+      {/* <section id="agent">
+        <AgentsSection />
+      </section> */}
+
+      {/* Brokerages */}
+      {/* <section id="brokerages">
+        <Brokerage />
+      </section>
+      <SmarterFilters/>
+      <OwnersInControl/>
+      <PropertyManager/>
+      <NotAPortalSection/> */}
+      {/* Investor */}
+      {/* <section id="investor">
+        <PortfolioSection />
+      </section> */}
+
+      {/* <Joindeal />
+      <section id="plans">
+        <PricingSection />
+      </section>
+      <IncentivesSection /> */}
     </div>
-  );
+  )
 }

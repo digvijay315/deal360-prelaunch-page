@@ -38,7 +38,7 @@ interface ProfessionalFormProps {
   initialPlan?: string
 }
 
-export function ProfessionalForm({ initialRole = '', initialPlan = '' }: ProfessionalFormProps) {
+export default function ProfessionalForm({ initialRole = '', initialPlan = '' }: ProfessionalFormProps) {
   const [formData, setFormData] = useState({
     fullName: '',
     role: initialRole,
