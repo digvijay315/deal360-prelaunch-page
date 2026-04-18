@@ -6,13 +6,13 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '@/components/Ui/dialog'
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from '@/components/ui/tabs'
+} from '@/components/Ui/tabs'
 import { ProfessionalForm } from './ProfessionalForm'
 import { UserForm } from './UserForm'
 import { CompanyForm } from './CompanyForm'

@@ -1,15 +1,15 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Button } from '@/components/Ui/button'
+import { Input } from '@/components/Ui/input'
+import { Label } from '@/components/Ui/label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/Ui/select'
 import { ApiValidationError, postPreLaunch } from '@/lib/api'
 import { useState } from 'react'
 
