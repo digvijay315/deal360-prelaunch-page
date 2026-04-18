@@ -10,7 +10,7 @@ import { Label } from '@/components/Ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/Ui/select';
 import { Textarea } from '@/components/Ui/textarea';
 import { DatePicker } from '@/components/Ui/date-picker';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/Ui/popover';
 import Image from 'next/image';
 import { ApiValidationError, postPreLaunch } from '@/lib/api';
 

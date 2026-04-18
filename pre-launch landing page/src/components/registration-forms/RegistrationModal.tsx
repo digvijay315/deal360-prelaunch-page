@@ -13,9 +13,9 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/Ui/tabs'
-import { ProfessionalForm } from './ProfessionalForm'
-import { UserForm } from './UserForm'
-import { CompanyForm } from './CompanyForm'
+import  ProfessionalForm  from './ProfessionalForm'
+import  UserForm  from './UserForm'
+import CompanyForm  from './CompanyForm'
 import Image from 'next/image'
 
 interface RegistrationModalProps {
