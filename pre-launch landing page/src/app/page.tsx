@@ -57,7 +57,7 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      <WhatsComing />
+      {/* <WhatsComing />
 
       <StartWithRequirements />
 
@@ -85,7 +85,7 @@ export default function Home() {
 
       <Rewards />
 
-      <RewardsCard />
+      <RewardsCard /> */}
 
 
       {/* Buying Intent */}
