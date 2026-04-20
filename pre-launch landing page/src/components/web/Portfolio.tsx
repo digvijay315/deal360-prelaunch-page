@@ -5,7 +5,7 @@
 'use client'
 
 import { TrendingUp, Users, FileCheck } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/Ui/button'
 
 interface PropertyItem {
   name: string

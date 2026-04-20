@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Check, CheckCircle, Clock, Shield } from 'lucide-react'
-import { Button } from '../ui/button'
+import { Button } from '../Ui/button'
 import { RegistrationModal } from '../registration-forms/RegistrationModal'
 import { useTranslations } from 'next-intl'
 
