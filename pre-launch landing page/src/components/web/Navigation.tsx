@@ -4,7 +4,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { Button } from '@/components/Ui/button'
+import { Button } from '@/components/ui/button'
 import { LogOut, Menu, Moon, Sun } from 'lucide-react'
 import {
   Sheet,
@@ -13,7 +13,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/Ui/sheet'
+} from '@/components/ui/sheet'
 import { RegistrationModal } from '../registration-forms/RegistrationModal'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'

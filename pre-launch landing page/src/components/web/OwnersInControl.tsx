@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from '../Ui/button'
+import { Button } from '../ui/button'
 import Image from 'next/image'
 import { Check } from 'lucide-react'
 import { useTranslations } from 'next-intl'

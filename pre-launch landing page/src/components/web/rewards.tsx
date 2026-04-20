@@ -25,13 +25,19 @@ export default function Rewards() {
       <div className="w-full px-4 md:px-16 xl:px-32 2xl:px-48 py-12">
         <div className="flex flex-col justify-center items-center gap-6 text-center w-full">
           {/* Heading */}
-            <h1 className="text-[34px] sm:text-5xl lg:text-6xl xl:text-[64px] font-medium leading-[110%] dark:text-white">
-            {t("title_part1")}
-            <span className="text-[var(--color-primary)] ">{t("title_part2")}</span>
-          </h1>
+            <h1 
+              className="font-medium leading-[110%] dark:text-white"
+              style={{ fontSize: "clamp(34px, 4vw, 64px)" }}
+            >
+              {t("title_part1")}
+              <span className="text-[var(--color-primary)] ">{t("title_part2")}</span>
+            </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg lg:text-xl font-normal text-[var(--color-text-secondary)] leading-[150%] max-w-2xl dark:text-white/70">
+          <p 
+            className="font-normal text-[var(--color-text-secondary)] leading-[150%] max-w-2xl dark:text-white/70"
+            style={{ fontSize: "clamp(16px, 1.2vw, 20px)" }}
+          >
             {t("subtitle")}
           </p>
 
@@ -45,7 +51,10 @@ export default function Rewards() {
           </button>
 
           {/* Description */}
-          <p className="text-base sm:text-lg lg:text-lg font-normal text-[var(--color-text-secondary)] leading-[150%] w-full dark:text-white/70">
+          <p 
+            className="font-normal text-[var(--color-text-secondary)] leading-[150%] w-full dark:text-white/70"
+            style={{ fontSize: "clamp(14px, 1.1vw, 18px)" }}
+          >
             {t("description")}
           </p>
         </div>

@@ -7,6 +7,13 @@ import { useParams } from "next/navigation";
 
 
 import { ReactNode } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 type SlideType = {
   slideTitle: ReactNode;          // ✅ changed
@@ -173,48 +180,24 @@ function Slide({
   const intentText = locale === "ar" ? "النية أولاً." : "Intent First.";
 
   return (
-    <>
-      <style>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .slide-container {
-          position: absolute;
-          inset: 0;
-          transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .slide-container.active {
-          position: relative;
-          opacity: 1;
-          visibility: visible;
-          animation: slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-      `}</style>
+    <div className="w-full overflow-visible pt-10 ">
       {/* ===================== DESKTOP ===================== */}
-      <div className="hidden md:flex relative w-full min-h-[600px]">
+      <div className="hidden md:flex relative w-full min-h-[600px] lg:min-h-[700px] overflow-visible">
         {/* ── Left gradient column ── */}
         <div
-          className="flex flex-col justify-center relative z-5 mt-10 mb-20"
+          className="flex flex-col justify-center relative z-5 mt-10 mb-10"
           style={{
             width: "56%",
             background: desktopGradient,
-            padding: "80px clamp(40px, 4vw, 100px)",
+            padding: "80px clamp(40px, 6vw, 120px)",
+
           }}
         >
           {/* Title */}
           <h2
             className="font-poppins font-medium mb-8 pr-14"
             style={{
-              fontSize: "clamp(36px, 3.35vw, 64px)",
+              fontSize: "clamp(30px, 3.2vw, 64px)",
               lineHeight: "110%",
               color: desktopKeyImage === "/slide21.png" ? "white" : "var(--color-text)",
               maxWidth: 711,
@@ -223,6 +206,7 @@ function Slide({
             <span className="text-[var(--color-text)]"
               style={{
                 display: desktopKeyImage === "/slide21.png" ? "inline" : "none",
+                color: "#4B4B4B"
               }}
             >{intentText}</span> {slideTitle}
           </h2>
@@ -231,7 +215,7 @@ function Slide({
           <p
             className="font-poppins font-normal mb-4 pr-14"
             style={{
-              fontSize: "clamp(14px, 1.05vw, 20px)",
+              fontSize: "clamp(14px, 1.1vw, 20px)",
               lineHeight: "150%",
               color: desktopKeyImage === "/slide21.png" ? "white" : "var(--color-text)",
               maxWidth: 711,
@@ -243,7 +227,7 @@ function Slide({
           <p
             className="font-poppins font-normal mb-10 pr-10"
             style={{
-              fontSize: "clamp(14px, 1.05vw, 20px)",
+              fontSize: "clamp(14px, 1.1vw, 20px)",
               lineHeight: "150%",
               color: desktopKeyImage === "/slide21.png" ? "white" : "var(--color-text)",
               maxWidth: 661,
@@ -260,7 +244,7 @@ function Slide({
                 <span
                   className="font-poppins font-medium"
                   style={{
-                    fontSize: "clamp(14px, 1.05vw, 20px)",
+                    fontSize: "clamp(14px, 1.1vw, 20px)",
                     color: desktopKeyImage === "/slide21.png" ? "white" : "var(--color-text)",
                   }}
                 >
@@ -272,10 +256,10 @@ function Slide({
         </div>
 
         {/* ── Right image column ── */}
-        <div className="relative flex-1 min-h-[600px]">
+        <div className="relative flex-1 ">
           {/* Background: keys / hand image */}
           <img
-            style={{ borderTopLeftRadius: "50px" }}
+            style={{ borderTopLeftRadius: "50px", borderBottomLeftRadius: "50px" }}
             src={desktopKeyImage}
             alt=""
             className="absolute inset-0 w-full h-full object-cover object-center"
@@ -286,13 +270,13 @@ function Slide({
             alt="App mockup"
             className="absolute object-contain"
             style={{
-              // left: "-20%",
-              top: "8%",
-              height: "96%",
+              top: "10%",
+              height: "100%",
               width: "auto",
               zIndex: 20,
               left: locale === "en" ? "-20.5%" : "auto",
               right: locale === "ar" ? "-20.5%" : "auto",
+              bottom: "-80px"
             }}
           />
         </div>
@@ -323,7 +307,6 @@ function Slide({
               alt=""
               className="absolute object-cover"
               style={{
-                // left: "calc(-14.6% - 1.5px)",
                 top: "calc(-5.3% - 1.5px)",
                 width: "139.5%",
                 height: "105.3%",
@@ -382,7 +365,6 @@ function Slide({
             className="absolute object-contain -right-10"
             style={{
               top: "35%",
-              // width: "43.6%",
               height: "65%",
               maxHeight: "345px",
             }}
@@ -393,7 +375,6 @@ function Slide({
         <div
           className="relative z-10 px-6 sm:px-8 py-8"
           style={{
-            // borderRadius: "32px 32px 0 0",
             background: mobileGradient,
           }}
         >
@@ -415,7 +396,7 @@ function Slide({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -449,102 +430,79 @@ const SLIDES_DATA = [
 ];
 
 export default function StartWithRequirements() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoPlay) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlay]);
-
-  const slide = SLIDES_DATA[currentSlide];
-
-  const handlePrevClick = () => {
-    setCurrentSlide((prev) => (prev - 1 + SLIDES_DATA.length) % SLIDES_DATA.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(true), 8000); // Resume auto-play after 8s
-  };
-
-  const handleNextClick = () => {
-    setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(true), 8000); // Resume auto-play after 8s
-  };
-
-  // const handleDotClick = (index) => {
-  //   setCurrentSlide(index);
-  //   setIsAutoPlay(false);
-  //   setTimeout(() => setIsAutoPlay(true), 8000); // Resume auto-play after 8s
-  // };
-
   const t = useTranslations('startWithRequirements');
 
-  // Convert bullets object to array
-  const bullets = [
-    t(`slides.${currentSlide}.bullet1`),
-    t(`slides.${currentSlide}.bullet2`),
-    t(`slides.${currentSlide}.bullet3`),
-  ];
-
   return (
-    <div className="w-full font-poppins bg-[#EDEEF0] md:mt-20 md:mb-32 mt-10 dark:bg-black">
-      {/* Slide container with smooth transition */}
-      <div className="relative flex items-center justify-center">
-        {/* Previous Arrow - Desktop */}
-        <button
-          onClick={handlePrevClick}
-          className="hidden md:flex absolute left-6 z-50 p-2 hover:opacity-70 transition-opacity"
-          aria-label="Previous slide"
+    <div className="w-full font-poppins bg-[#EDEEF0] md:mt-10 md:mb-32 mt-10 dark:bg-black group overflow-visible relative z-20">
+      <div className="relative overflow-visible">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={30}
+          slidesPerView={1}
+          loop={true}
+          speed={1000}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            el: '.requirements-pagination',
+          }}
+          navigation={{
+            nextEl: '.requirements-next',
+            prevEl: '.requirements-prev',
+          }}
+          className="w-full !overflow-visible"
+          style={{ overflow: 'visible' }}
         >
-          <ArrowIconPrev />
+          {SLIDES_DATA.map((slideData, index) => {
+            const bullets = [
+              t(`slides.${index}.bullet1`),
+              t(`slides.${index}.bullet2`),
+              t(`slides.${index}.bullet3`),
+            ];
+
+            return (
+              <SwiperSlide key={index} style={{ overflow: 'visible' }}>
+                <Slide
+                  slideTitle={t.rich(`slides.${index}.slideTitle`, {
+                    bold: (chunks) => <strong>{chunks}</strong>,
+                    highlight: (chunks) => <span className="text-primary">{chunks}</span>,
+                  })}
+                  slideDescription={t(`slides.${index}.slideDescription`)}
+                  slideDeal360Text={t.rich(`slides.${index}.slideDeal360Text`, {
+                    bold: (chunks) => <strong>{chunks}</strong>
+                  })}
+                  bullets={bullets}
+                  desktopGradient={slideData.desktopGradient}
+                  mobileGradient={slideData.mobileGradient}
+                  desktopKeyImage={slideData.desktopKeyImage}
+                  desktopPhoneImage={slideData.desktopPhoneImage}
+                  mobilePhoneImage={slideData.mobilePhoneImage}
+                  mobileBgImage={slideData.mobileBgImage}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* Custom Pagination Dot Indicators */}
+        <div className="requirements-pagination absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30 pointer-events-auto" />
+
+        {/* Navigation Arrows */}
+        <button className="requirements-prev hidden md:flex absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="rotate-180">
+            <path d="M9 5L15 12L9 19" stroke="#4B4B4B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
-        <Slide
-          slideTitle={t.rich(`slides.${currentSlide}.slideTitle`, {
-            bold: (chunks) => <strong>{chunks}</strong>,
-            highlight: (chunks) => <span className="text-primary">{chunks}</span>,
-          })}
-          slideDescription={t(`slides.${currentSlide}.slideDescription`)}
-          slideDeal360Text={t.rich(`slides.${currentSlide}.slideDeal360Text`, {
-            bold: (chunks) => <strong>{chunks}</strong>
-          })}
-          bullets={bullets}
-          desktopGradient={slide.desktopGradient}
-          mobileGradient={slide.mobileGradient}
-          desktopKeyImage={slide.desktopKeyImage}
-          desktopPhoneImage={slide.desktopPhoneImage}
-          mobilePhoneImage={slide.mobilePhoneImage}
-          mobileBgImage={slide.mobileBgImage}
-        />
-        {/* Next Arrow - Desktop */}
-        <button
-          onClick={handleNextClick}
-          className="hidden md:flex absolute right-6 z-50 p-2 hover:opacity-70 transition-opacity"
-          aria-label="Next slide"
-        >
-          <ArrowIconNext />
+
+        <button className="requirements-next hidden md:flex absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 5L15 12L9 19" stroke="#4B4B4B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </button>
       </div>
-
-      {/* Slide indicators */}
-      {/* <div className="flex justify-center gap-2 py-6 px-4">
-        {SLIDES_DATA.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`transition-all duration-300 rounded-full ${
-              index === currentSlide
-                ? "bg-gray-800 w-8 h-2"
-                : "bg-gray-400 w-2 h-2 hover:bg-gray-600"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div> */}
     </div>
   );
 }

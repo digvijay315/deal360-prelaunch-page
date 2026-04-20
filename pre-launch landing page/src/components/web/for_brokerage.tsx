@@ -58,12 +58,12 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
         <div className="lg:w-[60%] flex flex-col px-8 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-24 2xl:pl-48 pb-6">
 
           {/* Main heading */}
-          <h1 className="font-semibold md:font-medium leading-[110%] md:max-w-full" style={{ fontSize: "clamp(34px, 5vw, 64px)" }}>
+          <h1 className="font-semibold md:font-medium leading-[110%] md:max-w-full" style={{ fontSize: "clamp(34px, 4vw, 64px)" }}>
             <span style={{ color: "var(--color-primary)" }}>
               {t("hero.heading1")}
             </span>
           </h1>
-          <h1 className="font-semibold md:font-medium leading-[110%]" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
+          <h1 className="font-semibold md:font-medium leading-[110%]" style={{ fontSize: "clamp(36px, 4vw, 64px)" }}>
             <span className="text-[#4B4B4B] dark:text-white">
               {t("hero.heading2")}
             </span>
@@ -134,7 +134,10 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
 
           {/* Bottom note */}
           <div className="flex items-center justify-center lg:justify-start">
-            <p className="text-sm lg:text-base">
+            <p 
+              className="leading-[110%]"
+              style={{ fontSize: "clamp(14px, 1.2vw, 18px)" }}
+            >
               {t("hero.note")}
             </p>
           </div>
@@ -290,12 +293,10 @@ function FeaturesSection() {
               {f.title}
             </h3>
 
-            {/* Description */}
             <p
               className="font-normal leading-normal text-[var(--color-text)] dark:text-white/70"
               style={{
-                fontSize: "14px",
-
+                fontSize: "clamp(12px, 1vw, 16px)",
               }}
             >
               {f.desc}

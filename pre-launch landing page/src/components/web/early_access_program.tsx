@@ -71,14 +71,20 @@ export default function EarlyAccessProgram() {
       <div  className="w-full px-6 sm:px-10 lg:px-16 xl:px-32 pt-12 lg:pt-16 pb-6 text-center">
 
         {/* Title */}
-        <h1 className="text-[34px]  w-[359.563px] md:w-full sm:text-4xl lg:text-5xl xl:text-[64px] font-semibold sm:font-medium leading-[1.1] tracking-[-0.05em]">
+        <h1 
+          className="w-[359.563px] md:w-full font-semibold sm:font-medium leading-[1.1] tracking-[-0.05em]"
+          style={{ fontSize: "clamp(34px, 4vw, 64px)" }}
+        >
           <span className="text-[var(--color-text)] text-[var(--color-text)] dark:text-white">{t("title.part1")} </span>
           <span className="text-[#F88379]">{t("title.highlight")}</span>
           <span className="text-[var(--color-text)] text-[var(--color-text)] dark:text-white"> {t("title.part2")}</span>
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-5 lg:mt-6 text-sm sm:text-base lg:text-xl  text-[var(--color-text)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-[752px] mx-auto">
+        <p 
+          className="mt-5 lg:mt-6 text-[var(--color-text)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-[752px] mx-auto"
+          style={{ fontSize: "clamp(14px, 1.2vw, 20px)" }}
+        >
           {t("subtitle")}
         </p>
 
@@ -86,7 +92,10 @@ export default function EarlyAccessProgram() {
         <hr className="hidden lg:block mt-8 border-[#B6B6B6] max-w-[1465px] mx-auto" />
 
         {/* Description */}
-        <p className="mt-5 lg:mt-7 text-sm sm:text-base lg:text-xl  text-[var(--color-text)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-[1339px] mx-auto">
+        <p 
+          className="mt-5 lg:mt-7 text-[var(--color-text)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-[1339px] mx-auto"
+          style={{ fontSize: "clamp(14px, 1.2vw, 20px)" }}
+        >
           {t("description")}
         </p>
 
@@ -159,8 +168,16 @@ export default function EarlyAccessProgram() {
                 <div className="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center mb-4">
                   <ClockIcon />
                 </div>
-                <h3 className="text-[var(--color-text)] text-2xl font-medium leading-8 mb-2">{t("cards.noPayment.title")}</h3>
-                <p className="text-[var(--color-text)] text-xs leading-4">
+                <h3 
+                  className="text-[var(--color-text)] font-medium leading-8 mb-2"
+                  style={{ fontSize: "clamp(20px, 5vw, 24px)" }}
+                >
+                  {t("cards.noPayment.title")}
+                </h3>
+                <p 
+                  className="text-[var(--color-text)] leading-4"
+                  style={{ fontSize: "clamp(11px, 3vw, 13px)" }}
+                >
                   {t("cards.noPayment.body")}
                 </p>
               </div>
@@ -170,25 +187,44 @@ export default function EarlyAccessProgram() {
                 <div className="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center mb-4">
                   <ShieldIcon />
                 </div>
-                <h3 className="text-white text-2xl font-medium leading-8 mb-2">{t("cards.limitedVerified.title")}</h3>
-                <p className="text-white text-xs leading-4">
+                <h3 
+                  className="text-white font-medium leading-8 mb-2"
+                  style={{ fontSize: "clamp(20px, 5vw, 24px)" }}
+                >
+                  {t("cards.limitedVerified.title")}
+                </h3>
+                <p 
+                  className="text-white leading-4"
+                  style={{ fontSize: "clamp(11px, 3vw, 13px)" }}
+                >
                   {t("cards.limitedVerified.body")}
                 </p>
               </div>
 
               {/* Card 3: What Early Access Means — RIGHT EDGE */}
               <div className="ml-[18%] rounded-tl-xl rounded-bl-xl rounded-tr-none rounded-br-none bg-white py-5 px-6">
-                <h3 className="text-[var(--color-text)] text-2xl font-medium leading-8 mb-2 text-center">
+                <h3 
+                  className="text-[var(--color-text)] font-medium leading-8 mb-2 text-center"
+                  style={{ fontSize: "clamp(20px, 5vw, 24px)" }}
+                >
                   {t("cards.earlyAccessMeans.title")}
                 </h3>
-                <p className="text-[var(--color-text)] text-xs leading-4 text-center mb-4">
+                <p 
+                  className="text-[var(--color-text)] leading-4 text-center mb-4"
+                  style={{ fontSize: "clamp(11px, 3vw, 13px)" }}
+                >
                   {t("cards.earlyAccessMeans.body")}
                 </p>
                 <div className="flex flex-col gap-3">
                   {earlyAccessItems.map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <div className="mt-1 flex-shrink-0"><CheckIconSm /></div>
-                      <span className="text-[var(--color-text)] text-sm leading-5">{item}</span>
+                      <span 
+                        className="text-[var(--color-text)] leading-5"
+                        style={{ fontSize: "clamp(12px, 3.5vw, 14px)" }}
+                      >
+                        {item}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -199,23 +235,44 @@ export default function EarlyAccessProgram() {
                 <div className="w-12 h-12 rounded-full bg-white shadow flex items-center justify-center mb-4">
                   <SparkleIcon />
                 </div>
-                <h3 className="text-[var(--color-text)] text-2xl font-medium leading-8 mb-2">{t("cards.shapePlatform.title")}</h3>
-                <p className="text-[var(--color-text)] text-xs leading-4">
+                <h3 
+                  className="text-[var(--color-text)] font-medium leading-8 mb-2"
+                  style={{ fontSize: "clamp(20px, 5vw, 24px)" }}
+                >
+                  {t("cards.shapePlatform.title")}
+                </h3>
+                <p 
+                  className="text-[var(--color-text)] leading-4"
+                  style={{ fontSize: "clamp(11px, 3vw, 13px)" }}
+                >
                   {t("cards.shapePlatform.body")}
                 </p>
               </div>
 
               {/* Card 5: Why It Matters — RIGHT EDGE */}
               <div className="ml-[18%] rounded-tl-xl rounded-bl-xl rounded-tr-none rounded-br-none bg-white py-5 px-6 mb-4">
-                <h3 className="text-[var(--color-text)] text-2xl font-medium leading-8 mb-2 text-center">{t("cards.whyItMatters.title")}</h3>
-                <p className="text-[var(--color-text)] text-xs leading-4 text-center mb-4">
+                <h3 
+                  className="text-[var(--color-text)] font-medium leading-8 mb-2 text-center"
+                  style={{ fontSize: "clamp(20px, 5vw, 24px)" }}
+                >
+                  {t("cards.whyItMatters.title")}
+                </h3>
+                <p 
+                  className="text-[var(--color-text)] leading-4 text-center mb-4"
+                  style={{ fontSize: "clamp(11px, 3vw, 13px)" }}
+                >
                   {t("cards.whyItMatters.body")}
                 </p>
                 <div className="flex flex-col gap-3">
                   {whyMattersItems.map((item, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <div className="mt-1 flex-shrink-0"><CheckIconSm /></div>
-                      <span className="text-[var(--color-text)] text-sm leading-5">{item}</span>
+                      <span 
+                        className="text-[var(--color-text)] leading-5"
+                        style={{ fontSize: "clamp(12px, 3.5vw, 14px)" }}
+                      >
+                        {item}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -239,8 +296,16 @@ export default function EarlyAccessProgram() {
                     <div className={iconCircle}>
                       <ClockIcon />
                     </div>
-                    <h3 className="mt-5 text-[var(--color-text)] text-2xl font-medium leading-[122%]">{t("cards.noPayment.title")}</h3>
-                    <p className="mt-3 text-[var(--color-text)] text-sm leading-[150%]">
+                    <h3 
+                      className="mt-5 text-[var(--color-text)] font-medium leading-[122%]"
+                      style={{ fontSize: "clamp(20px, 1.5vw, 24px)" }}
+                    >
+                      {t("cards.noPayment.title")}
+                    </h3>
+                    <p 
+                      className="mt-3 text-[var(--color-text)] leading-[150%]"
+                      style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                    >
                       {t("cards.noPayment.body")}
                     </p>
                   </div>
@@ -250,8 +315,16 @@ export default function EarlyAccessProgram() {
                     <div className={iconCircle}>
                       <ShieldIcon />
                     </div>
-                    <h3 className="mt-5 text-white text-2xl font-medium leading-[122%]">{t("cards.limitedVerified.title")}</h3>
-                    <p className="mt-3 text-white text-sm leading-[150%]">
+                    <h3 
+                      className="mt-5 text-white font-medium leading-[122%]"
+                      style={{ fontSize: "clamp(20px, 1.5vw, 24px)" }}
+                    >
+                      {t("cards.limitedVerified.title")}
+                    </h3>
+                    <p 
+                      className="mt-3 text-white leading-[150%]"
+                      style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                    >
                       {t("cards.limitedVerified.body")}
                     </p>
                   </div>
@@ -259,18 +332,31 @@ export default function EarlyAccessProgram() {
 
                 {/* What Early Access Means */}
                 <div className="h-[430px] rounded-2xl border border-[#B6B6B6] bg-white overflow-hidden px-10 py-10 flex flex-col">
-                  <h3 className="text-[var(--color-text)] text-2xl font-medium leading-[110%]">{t("cards.earlyAccessMeans.title")}</h3>
-                  <p className="mt-4 text-[var(--color-text)] text-sm leading-[150%] max-w-[574px]">
-                    {t("cards.earlyAccessMeans.body")}
-                  </p>
-                  <div className="mt-6 flex flex-col gap-4">
-                    {earlyAccessItems.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <div className="flex-shrink-0 mt-[2px]"><CheckIcon /></div>
-                        <span className="text-[#68706A] text-sm font-medium leading-[110%]">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                    <h3 
+                      className="text-[var(--color-text)] font-medium leading-[110%]"
+                      style={{ fontSize: "clamp(20px, 1.5vw, 24px)" }}
+                    >
+                      {t("cards.earlyAccessMeans.title")}
+                    </h3>
+                    <p 
+                      className="mt-4 text-[var(--color-text)] leading-[150%] max-w-[574px]"
+                      style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                    >
+                      {t("cards.earlyAccessMeans.body")}
+                    </p>
+                    <div className="mt-6 flex flex-col gap-4">
+                      {earlyAccessItems.map((item, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <div className="flex-shrink-0 mt-[2px]"><CheckIcon /></div>
+                          <span 
+                            className="text-[#68706A] font-medium leading-[110%]"
+                            style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                          >
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                 </div>
               </div>
 
@@ -279,18 +365,31 @@ export default function EarlyAccessProgram() {
 
                 {/* Why It Matters */}
                 <div className="h-[430px] rounded-2xl border border-[#B6B6B6] bg-white overflow-hidden px-10 py-10 flex flex-col">
-                  <h3 className="text-[var(--color-text)] text-2xl font-medium leading-[110%]">{t("cards.whyItMatters.title")}</h3>
-                  <p className="mt-4 text-[var(--color-text)] text-sm leading-[150%] max-w-[552px]">
-                    {t("cards.whyItMatters.body")}
-                  </p>
-                  <div className="mt-6 flex flex-col gap-6">
-                    {whyMattersItems.map((item, i) => (
-                      <div key={i} className="flex items-start gap-2">
-                        <div className="flex-shrink-0 mt-[2px]"><CheckIcon /></div>
-                        <span className="text-[#68706A] text-sm font-medium leading-[110%]">{item}</span>
-                      </div>
-                    ))}
-                  </div>
+                    <h3 
+                      className="text-[var(--color-text)] font-medium leading-[110%]"
+                      style={{ fontSize: "clamp(20px, 1.5vw, 24px)" }}
+                    >
+                      {t("cards.whyItMatters.title")}
+                    </h3>
+                    <p 
+                      className="mt-4 text-[var(--color-text)] leading-[150%] max-w-[552px]"
+                      style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                    >
+                      {t("cards.whyItMatters.body")}
+                    </p>
+                    <div className="mt-6 flex flex-col gap-6">
+                      {whyMattersItems.map((item, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <div className="flex-shrink-0 mt-[2px]"><CheckIcon /></div>
+                          <span 
+                            className="text-[#68706A] font-medium leading-[110%]"
+                            style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                          >
+                            {item}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                 </div>
 
                 {/* Shape the platform */}
@@ -298,10 +397,18 @@ export default function EarlyAccessProgram() {
                   <div className={iconCircle}>
                     <SparkleIcon />
                   </div>
-                  <h3 className="mt-5 text-[var(--color-text)] text-2xl font-medium leading-[110%]">{t("cards.shapePlatform.title")}</h3>
-                  <p className="mt-3 text-[var(--color-text)] text-sm leading-[150%] max-w-[508px]">
-                    {t("cards.shapePlatform.body")}
-                  </p>
+                    <h3 
+                      className="mt-5 text-[var(--color-text)] font-medium leading-[110%]"
+                      style={{ fontSize: "clamp(20px, 1.5vw, 24px)" }}
+                    >
+                      {t("cards.shapePlatform.title")}
+                    </h3>
+                    <p 
+                      className="mt-3 text-[var(--color-text)] leading-[150%] max-w-[508px]"
+                      style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                    >
+                      {t("cards.shapePlatform.body")}
+                    </p>
                 </div>
 
               </div>

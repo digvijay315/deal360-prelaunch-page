@@ -103,7 +103,7 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
         <div className="order-1 lg:order-2 lg:w-[53%] flex flex-col justify-center px-5 sm:px-10 lg:px-14 xl:px-16 pt-10 pb-6 lg:py-16">
           {/* Main heading */}
           <h1 className="font-semibold md:font-medium leading-[110%] mb-6 text-[var(--color-text)] dark:text-white"
-            style={{ fontSize: "clamp(34px, 5vw, 64px)", }}>
+            style={{ fontSize: "clamp(34px, 4vw, 64px)", }}>
             <span>{t("hero.title1")} </span>
             <span style={{ color: "var(--color-primary)" }}>{t("hero.titleHighlight")}</span>
             <span>.</span>
@@ -127,7 +127,7 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
           </p>
 
           <h2 className="font-medium leading-[110%] mb-5 text-[var(--color-text)] dark:text-white"
-            style={{ fontSize: "24px"}} >
+            style={{ fontSize: "clamp(20px, 1.8vw, 24px)"}} >
             {t("hero.whyTitle")}
           </h2>
 
@@ -135,7 +135,10 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
             {[1,2,3,4].map(i => (
               <div key={i} className="flex items-center gap-3">
                 <CheckBadge />
-                <span className="text-sm lg:text-base leading-[110%] dark:text-white/70">
+                <span 
+                  className="leading-[110%] dark:text-white/70"
+                  style={{ fontSize: "clamp(14px, 1.2vw, 18px)" }}
+                >
                   {t(`hero.points.p${i}`)}
                 </span>
               </div>
@@ -189,8 +192,8 @@ function HeroSection({ setregistration_modal }: { setregistration_modal: (value:
               </svg>
             </div>
             <p
-              className="text-sm lg:text-base leading-[110%] text-[var(--color-text)] dark:text-white"
-              
+              className="leading-[110%] text-[var(--color-text)] dark:text-white"
+              style={{ fontSize: "clamp(14px, 1.2vw, 18px)" }}
             >
              {t("hero.note")}
             </p>
@@ -376,8 +379,7 @@ function FeaturesSection() {
             <p
               className="font-normal leading-normal text-[var(--color-text)] dark:text-white/70"
               style={{
-                fontSize: "14px",
-               
+                fontSize: "clamp(12px, 1vw, 16px)",
               }}
             >
               {f.desc}

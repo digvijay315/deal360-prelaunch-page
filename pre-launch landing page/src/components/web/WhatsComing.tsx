@@ -70,7 +70,10 @@ export default function WhatsComing() {
 
         {/* HEADING */}
         <div className="text-center px-4 pt-12">
-      <h2 className="text-[34px] sm:text-[44px] lg:text-[64px] font-semibold md:font-medium text-[#4B4B4B] dark:text-white mb-2">
+        <h2 
+        className="font-semibold md:font-medium text-[#4B4B4B] dark:text-white mb-2"
+        style={{ fontSize: "clamp(34px, 4vw, 64px)", lineHeight: "1.2" }}
+      >
           {t('headingPart1')}<span className="text-[#F88379]">{t('headingHighlight')}</span>{t('headingPart2')}<span className="text-[#F88379]">{t('headingHighlight2')}</span>
         </h2>
         </div>
@@ -144,17 +147,17 @@ function DesktopCard({
         {icon}
       </div>
 
-      <h3 className={`
-        text-lg sm:text-xl md:text-2xl font-semibold
-        ${isMint ? "text-[#4B4B4B]" : "text-white"}
-      `}>
+      <h3 
+        className={`font-semibold ${isMint ? "text-[#4B4B4B]" : "text-white"}`}
+        style={{ fontSize: "clamp(18px, 1.5vw, 24px)" }}
+      >
         {t(title)}
       </h3>
 
-      <p className={`
-        mt-2 text-sm sm:text-base
-        ${isMint ? "text-[#4B4B4B]" : "text-white"}
-      `}>
+      <p 
+        className={`mt-2 ${isMint ? "text-[#4B4B4B]" : "text-white"}`}
+        style={{ fontSize: "clamp(14px, 1vw, 16px)" }}
+      >
         {t(description)}
       </p>
     </div>
@@ -187,19 +190,15 @@ function MobileCard({
       </div>
 
       <h3
-        className={`
-          text-lg sm:text-xl md:text-2xl font-semibold
-          ${isMint ? "text-[#4B4B4B]" : "text-white"}
-        `}
+        className={`font-semibold ${isMint ? "text-[#4B4B4B]" : "text-white"}`}
+        style={{ fontSize: "clamp(18px, 4.5vw, 24px)" }}
       >
         {t(title)}
       </h3>
 
       <p
-        className={`
-          mt-2 text-sm sm:text-base
-          ${isMint ? "text-[#4B4B4B]" : "text-white"}
-        `}
+        className={`mt-2 ${isMint ? "text-[#4B4B4B]" : "text-white"}`}
+        style={{ fontSize: "clamp(14px, 3.5vw, 16px)" }}
       >
         {t(description)}
       </p>

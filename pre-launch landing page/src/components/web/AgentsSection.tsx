@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Button } from '../Ui/button'
+import { Button } from '../ui/button'
 import { RegistrationModal } from '../registration-forms/RegistrationModal'
 import {
   BadgeCheck,

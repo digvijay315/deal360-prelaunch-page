@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Check } from 'lucide-react'
-import { Button } from '../Ui/button'
+import { Button } from '../ui/button'
 import { RegistrationModal } from '../registration-forms/RegistrationModal'
 import { useTranslations } from 'next-intl'
 

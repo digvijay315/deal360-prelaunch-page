@@ -125,7 +125,10 @@ export default function AgentPricingSection() {
           <svg className="w-[36.192px] h-[37.5px] sm:w-[43px] sm:h-[45px]" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 43 45" fill="none">
             <path d="M26.7437 44.361L9.20926 39.2499V42.236H0V23.4629H14.6727L31.6131 29.663V33.3813H42.8139V39.4018L26.7437 44.361ZM2.30001 39.9337H6.90464V25.7652H2.30001V39.9337ZM26.624 41.9183L40.4563 37.7027V35.6836H24.522L17.3733 33.3536L18.133 31.1503L24.8696 33.3813H29.3108V31.2631L14.3089 25.7652H9.20926V36.8347L26.624 41.9183ZM38.2092 27.8903V11.774L25.5465 2.91934L12.8838 11.774V17.9719H10.5814V10.6712L25.5465 0L40.5115 10.6689V27.8903H38.2092ZM26.9187 13.3235H28.7789V11.4632H26.9187V13.3235ZM22.314 13.3235H24.1743V11.4632H22.314V13.3235ZM26.9187 17.9281H28.7789V16.0679H26.9187V17.9281ZM22.314 17.9281H24.1743V16.0679H22.314V17.9281Z" fill="#4B4B4B"/>
           </svg>
-          <h1 className="font-medium text-2xl lg:text-3xl dark:text-white">
+          <h1 
+            className="font-medium dark:text-white"
+            style={{ fontSize: "clamp(24px, 2vw, 40px)" }}
+          >
             {t("title")}
           </h1>
         </div>
@@ -155,38 +158,83 @@ export default function AgentPricingSection() {
 
                   {/* Header */}
                   <div className="mb-6 min-h-[140px]">
-                    <h3 className="text-base font-medium dark:text-white mb-2">
+                    <h3 
+                      className="font-medium dark:text-white mb-2"
+                      style={{ fontSize: "clamp(15px, 1.2vw, 18px)" }}
+                    >
                       {plan.name}
                     </h3>
 
                     {plan.freeLabel ? (
                       <>
-                        <div className="text-2xl font-bold dark:text-white">{plan.freeLabel}</div>
-                        <p className="text-xs dark:text-white/70">{plan.description}</p>
+                        <div 
+                          className="font-bold dark:text-white"
+                          style={{ fontSize: "clamp(22px, 1.8vw, 26px)" }}
+                        >
+                          {plan.freeLabel}
+                        </div>
+                        <p 
+                          className="dark:text-white/70"
+                          style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                        >
+                          {plan.description}
+                        </p>
                       </>
                     ) : (
                       <>
-                        <p className="text-xs dark:text-white/70">Early-registration rate:</p>
+                        <p 
+                          className="dark:text-white/70"
+                          style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                        >
+                          Early-registration rate:
+                        </p>
                         <div className="text-base">
-                          <span className="text-2xl font-bold dark:text-white">{plan.earlyRate}</span> /mo
+                          <span 
+                            className="font-bold dark:text-white"
+                            style={{ fontSize: "clamp(22px, 1.8vw, 26px)" }}
+                          >
+                            {plan.earlyRate}
+                          </span> /mo
                         </div>
-                        <p className="text-xs line-through dark:text-white/70">{plan.standardRate}</p>
-                        <p className="text-xs mt-1 dark:text-white/70">{plan.description}</p>
+                        <p 
+                          className="line-through dark:text-white/70"
+                          style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                        >
+                          {plan.standardRate}
+                        </p>
+                        <p 
+                          className="mt-1 dark:text-white/70"
+                          style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                        >
+                          {plan.description}
+                        </p>
                       </>
                     )}
                   </div>
 
                   {/* Credits */}
-                  <div className="flex justify-between px-4 py-4 rounded-lg bg-[#FFEAE8] dark:bg-[#1a1a1a] mb-5 text-xs font-medium">
+                  <div 
+                    className="flex justify-between px-4 py-4 rounded-lg bg-[#FFEAE8] dark:bg-[#1a1a1a] mb-5 font-medium"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
                     <span className="dark:text-white/70">Monthly Credits Included</span>
                     <span className="font-bold dark:text-white">{plan.monthlyCredits}</span>
                   </div>
 
                   {/* Features */}
                   <div className="flex flex-col gap-2 flex-1">
-                    <span className="text-xs font-semibold dark:text-white/70">Includes</span>
+                    <span 
+                      className="font-semibold dark:text-white/70"
+                      style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                    >
+                      Includes
+                    </span>
                     {plan.features.map((feature, i) => (
-                      <div key={i} className="flex gap-3 items-start text-xs">
+                      <div 
+                        key={i} 
+                        className="flex gap-3 items-start"
+                        style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                      >
                         <CheckIcon />
                         <span className="dark:text-white/70">{feature}</span>
                       </div>
@@ -196,8 +244,18 @@ export default function AgentPricingSection() {
 
                 {/* Footer */}
                 <div className="px-6 pb-6 pt-4 border-t border-gray-200 dark:border-white/10 flex flex-col items-center">
-                  <span className="text-lg font-medium text-[var(--color-primary)]">{plan.ctaLabel}</span>
-                  <span className="text-xs mt-3 dark:text-white/70 text-center">{plan.ctaDesc}</span>
+                  <span 
+                    className="font-medium text-[var(--color-primary)]"
+                    style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
+                  >
+                    {plan.ctaLabel}
+                  </span>
+                  <span 
+                    className="mt-3 dark:text-white/70 text-center"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
+                    {plan.ctaDesc}
+                  </span>
                   <button
                     onClick={() => setIsModalOpen(true)}
                     className="w-full py-4 rounded-lg bg-[#7FFFD4] text-[#4B4B4B] font-medium mt-4 hover:opacity-90"

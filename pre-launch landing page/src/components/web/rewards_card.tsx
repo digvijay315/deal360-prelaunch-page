@@ -59,49 +59,75 @@ export default function RewardsCard() {
 
                   <img src={publicAsset('/reward1.png')} className="h-[80px] w-[80px]" alt="Reward" />
 
-                  <h3 className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-medium mt-2">
+                  <h3 
+                    className="font-medium mt-2"
+                    style={{ fontSize: "clamp(18px, 1.5vw, 24px)" }}
+                  >
                     {t('card1.title')}
                   </h3>
 
-                  <p className="text-[13px] sm:text-[14px] mt-2 text-gray-900 dark:text-white/70">
+                  <p 
+                    className="mt-2 text-gray-900 dark:text-white/70"
+                    style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                  >
                     {t('card1.description')}
                   </p>
 
-                  <h3 className="text-[16px] font-medium mt-4">
+                  <h3 
+                    className="font-medium mt-4"
+                    style={{ fontSize: "clamp(15px, 1.1vw, 17px)" }}
+                  >
                     {t('card1.howItWorks')}
                   </h3>
 
                   <div className="flex flex-col gap-2 mt-2">
                     {card1Steps.map((step, idx) => (
-                      <div key={idx} className="flex gap-3 text-xs text-gray-900 dark:text-white/70">
+                      <div 
+                        key={idx} 
+                        className="flex gap-3 text-gray-900 dark:text-white/70"
+                        style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                      >
                         <CheckIcon1 />
                         <span>{step}</span>
                       </div>
                     ))}
                   </div>
 
-                  <h3 className="flex items-center gap-2 text-[16px] font-medium mt-4">
+                  <h3 
+                    className="flex items-center gap-2 font-medium mt-4"
+                    style={{ fontSize: "clamp(15px, 1.1vw, 17px)" }}
+                  >
                     <img src={publicAsset('/reward1.png')} className="h-[24px] w-[24px]" alt="Reward Icon" />
                     {t('card1.rewardsTitle')}
                   </h3>
 
                   <div className="flex flex-col gap-2 mt-2">
                     {card1Rewards.map((reward, idx) => (
-                      <div key={idx} className="flex gap-3 text-xs text-gray-900 dark:text-white/70">
+                      <div 
+                        key={idx} 
+                        className="flex gap-3 text-gray-900 dark:text-white/70"
+                        style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                      >
                         <CheckIcon />
                         <span>{reward}</span>
                       </div>
                     ))}
                   </div>
 
-                  <p className="text-[12px] mt-2 text-gray-900 dark:text-white/50">
+                  <p 
+                    className="mt-2 text-gray-900 dark:text-white/50"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
                     {t('card1.footerNote')}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-center gap-2 mt-auto m-4 px-4 py-4 rounded-sm 
                                 bg-[#7FFFD4] dark:bg-[#5EEAD4]">
-                  <span className="font-medium text-xs sm:text-sm md:text-base whitespace-nowrap text-black dark:text-gray-900">
+                  <span 
+                    className="font-medium whitespace-nowrap text-black dark:text-gray-900"
+                    style={{ fontSize: "clamp(12px, 1vw, 16px)" }}
+                  >
                     {t('card1.buttonText')}
                   </span>
                 </div>
@@ -116,56 +142,88 @@ export default function RewardsCard() {
 
                   <img src={publicAsset('/reward2.png')} className="h-[80px] w-[80px]" alt="Reward" />
 
-                  <h3 className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] font-medium leading-[110%] mt-2">
+                  <h3 
+                    className="font-medium leading-[110%] mt-2"
+                    style={{ fontSize: "clamp(18px, 1.5vw, 24px)" }}
+                  >
                     {t('card2.title')}
                   </h3>
 
-                  <p className="text-[13px] sm:text-[14px] leading-[150%] mt-2 text-gray-900 dark:text-white/70">
+                  <p 
+                    className="leading-[150%] mt-2 text-gray-900 dark:text-white/70"
+                    style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                  >
                     {t('card2.description')}
                   </p>
 
-                  <h3 className="text-[16px] font-medium leading-[110%] mt-4">
+                  <h3 
+                    className="font-medium leading-[110%] mt-4"
+                    style={{ fontSize: "clamp(15px, 1.1vw, 17px)" }}
+                  >
                     {t('card2.howItWorks')}
                   </h3>
 
                   <div className="flex flex-col gap-2 mt-2">
                     {card2Steps.map((step, idx) => (
-                      <div key={idx} className="flex gap-3 items-start text-xs text-gray-900 dark:text-white/70">
+                      <div 
+                        key={idx} 
+                        className="flex gap-3 items-start text-gray-900 dark:text-white/70"
+                        style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                      >
                         <CheckIcon />
                         <span>{step}</span>
                       </div>
                     ))}
-                    <p className="text-[12px] leading-[150%] mt-2 text-gray-900 dark:text-white/50">
+                    <p 
+                      className="leading-[150%] mt-2 text-gray-900 dark:text-white/50"
+                      style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                    >
                       {t('card2.stepsNote')}
                     </p>
                   </div>
 
-                  <h3 className="flex items-center gap-2 text-[16px] font-medium leading-[110%] mt-4">
+                  <h3 
+                    className="flex items-center gap-2 font-medium leading-[110%] mt-4"
+                    style={{ fontSize: "clamp(15px, 1.1vw, 17px)" }}
+                  >
                     <img src={publicAsset('/reward2.png')} className="h-[24px] w-[24px]" alt="Reward Icon" />
                     <span>{t('card2.rewardsTitle')}</span>
                   </h3>
 
                   <div className="flex flex-col gap-2 mt-2">
                     {card2Rewards.map((reward, idx) => (
-                      <div key={idx} className="flex gap-3 items-start text-[14px] text-gray-900 dark:text-white/70">
+                      <div 
+                        key={idx} 
+                        className="flex gap-3 items-start text-gray-900 dark:text-white/70"
+                        style={{ fontSize: "clamp(13px, 1vw, 15px)" }}
+                      >
                         <CheckIcon />
                         <span>{reward}</span>
                       </div>
                     ))}
                   </div>
 
-                  <h3 className="text-[16px] font-medium leading-[110%] mt-4 text-gray-900 dark:text-white/70">
+                  <h3 
+                    className="font-medium leading-[110%] mt-4 text-gray-900 dark:text-white/70"
+                    style={{ fontSize: "clamp(15px, 1.1vw, 17px)" }}
+                  >
                     {t('card2.termsTitle')}
                   </h3>
 
-                  <p className="text-[12px] leading-[150%] mt-2 text-[#939393] dark:text-white/50">
+                  <p 
+                    className="leading-[150%] mt-2 text-[#939393] dark:text-white/50"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
                     {t('card2.terms')}
                   </p>
                 </div>
 
                 <div className="flex items-center justify-center gap-2 mt-auto m-4 px-4 py-4 rounded-md 
                                 bg-[#F88379] dark:bg-[#F87171]">
-                  <span className="font-medium text-xs sm:text-sm md:text-base whitespace-nowrap text-white dark:text-gray-900">
+                  <span 
+                    className="font-medium whitespace-nowrap text-white dark:text-gray-900"
+                    style={{ fontSize: "clamp(12px, 1vw, 16px)" }}
+                  >
                     {t('card2.buttonText')}
                   </span>
                 </div>

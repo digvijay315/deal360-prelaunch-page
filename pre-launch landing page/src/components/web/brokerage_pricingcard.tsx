@@ -125,7 +125,13 @@ export default function BrokeragePricingSection() {
 </svg>
 
           {/* Title */}
-          <h1 className="font-medium leading-[110%] text-[24px] sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl line-clamp-2 dark:text-white" style={{ fontFamily: "Poppins, sans-serif" }}>
+          <h1 
+            className="font-medium leading-[110%] line-clamp-2 dark:text-white" 
+            style={{ 
+              fontFamily: "Poppins, sans-serif",
+              fontSize: "clamp(24px, 2vw, 40px)"
+            }}
+          >
             {t("title")}
           </h1>
         </div>
@@ -154,44 +160,102 @@ export default function BrokeragePricingSection() {
                 <div className="flex flex-col flex-1 px-6 pb-6">
                   {/* Header */}
                   <div className="mb-6 min-h-[140px]">
-                    <h3 className="text-base font-medium text-black dark:text-white mb-2">{plan.name}</h3>
+                    <h3 
+                      className="font-medium text-black dark:text-white mb-2"
+                      style={{ fontSize: "clamp(15px, 1.2vw, 18px)" }}
+                    >
+                      {plan.name}
+                    </h3>
 
                     {plan.freeLabel ? (
                       <>
-                        <div className="text-2xl font-bold">{plan.freeLabel}</div>
-                        <p className="text-xs text-black/70 dark:text-white/70">{plan.description}</p>
+                        <div 
+                          className="font-bold"
+                          style={{ fontSize: "clamp(22px, 1.8vw, 26px)" }}
+                        >
+                          {plan.freeLabel}
+                        </div>
+                        <p 
+                          className="text-black/70 dark:text-white/70"
+                          style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                        >
+                          {plan.description}
+                        </p>
                       </>
                     ) : (
                       <>
-                        <p className="text-xs text-black/70 dark:text-white/70">Early-registration rate:</p>
+                        <p 
+                          className="text-black/70 dark:text-white/70"
+                          style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                        >
+                          Early-registration rate:
+                        </p>
                         <div className="text-base">
-                          <span className="text-2xl font-bold">{plan.earlyRate}</span> /mo
+                          <span 
+                            className="font-bold"
+                            style={{ fontSize: "clamp(22px, 1.8vw, 26px)" }}
+                          >
+                            {plan.earlyRate}
+                          </span> /mo
                         </div>
-                        <p className="text-xs text-black/70 dark:text-white/70">
+                        <p 
+                          className="text-black/70 dark:text-white/70"
+                          style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                        >
                           <span className="line-through">{plan.standardRate}</span>
                         </p>
-                        <p className="text-xs text-black/70 dark:text-white/70 mt-1">{plan.description}</p>
+                        <p 
+                          className="text-black/70 dark:text-white/70 mt-1"
+                          style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                        >
+                          {plan.description}
+                        </p>
                       </>
                     )}
                   </div>
 
                   {/* Credits */}
-                  <div className="flex justify-between px-4 py-4 rounded-lg mb-5 text-xs font-medium border border-[#DADADA] dark:border-[#444]">
+                  <div 
+                    className="flex justify-between px-4 py-4 rounded-lg mb-5 font-medium border border-[#DADADA] dark:border-[#444]"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
                     <span>Monthly Credits Included</span>
-                    <span className="font-bold text-base">{plan.monthlyCredits}</span>
+                    <span 
+                      className="font-bold"
+                      style={{ fontSize: "clamp(15px, 1.2vw, 18px)" }}
+                    >
+                      {plan.monthlyCredits}
+                    </span>
                   </div>
-                  <p className="text-xs font-bold text-black dark:text-white">Agents: 
-                    <span className="text-xs font-normal text-black/70 dark:text-white/70">{plan.agents}</span>
+                  <p 
+                    className="font-bold text-black dark:text-white"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
+                    Agents: 
+                    <span className="font-normal text-black/70 dark:text-white/70">{plan.agents}</span>
                   </p>
-                  <p className="text-xs font-bold text-black dark:text-white mt-2">Active Credit Seats: 
-                    <span className="text-xs font-normal text-black/70 dark:text-white/70">{plan.creditseats}</span>
+                  <p 
+                    className="font-bold text-black dark:text-white mt-2"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
+                    Active Credit Seats: 
+                    <span className="font-normal text-black/70 dark:text-white/70">{plan.creditseats}</span>
                   </p>
 
                   {/* Features */}
                   <div className="flex flex-col gap-2 flex-1 mt-6">
-                    <span className="text-xs font-semibold text-black dark:text-white">Includes</span>
+                    <span 
+                      className="font-semibold text-black dark:text-white"
+                      style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                    >
+                      Includes
+                    </span>
                     {plan.features.map((feature, i) => (
-                      <div key={i} className="flex gap-3 items-start text-xs">
+                      <div 
+                        key={i} 
+                        className="flex gap-3 items-start"
+                        style={{ fontSize: "clamp(12px, 0.9vw, 14px)" }}
+                      >
                         <CheckIcon />
                         <span className="text-black/70 dark:text-white/70">{feature}</span>
                       </div>
@@ -202,9 +266,19 @@ export default function BrokeragePricingSection() {
                 {/* Footer */}
                 <div className="px-6 pb-6 pt-4 border-t border-[#EDEDED] dark:border-[#333] flex items-center justify-center flex-col">
                   <div className="flex justify-center items-center">
-                    <span className="text-lg font-medium text-[var(--color-primary)]">{plan.ctaLabel}</span>
+                    <span 
+                      className="font-medium text-[var(--color-primary)]"
+                      style={{ fontSize: "clamp(16px, 1.5vw, 20px)" }}
+                    >
+                      {plan.ctaLabel}
+                    </span>
                   </div>
-                  <span className="text-xs text-black/70 dark:text-white/70 self-stretch flex items-center justify-center mt-4">{plan.ctaDesc}</span>
+                  <span 
+                    className="text-black/70 dark:text-white/70 self-stretch flex items-center justify-center mt-4 text-center"
+                    style={{ fontSize: "clamp(11px, 0.8vw, 13px)" }}
+                  >
+                    {plan.ctaDesc}
+                  </span>
                   <button onClick={() => setIsModalOpen(true)} className="w-full py-4 rounded-lg bg-[#7FFFD4] text-black font-medium hover:opacity-90 transition mt-4">
                     {t("registerButton")}
                   </button>

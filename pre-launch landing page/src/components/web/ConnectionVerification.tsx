@@ -15,7 +15,7 @@ export default function ConnectionVerification() {
             {/* Heading */}
             <h2
               className=" leading-[110%] font-semibold text-4xl  md:font-medium text-[var(--color-text)] dark:text-white w-full"
-              style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+              style={{ fontSize: "clamp(36px, 4vw, 64px)" }}
             >
               {t('headingPart1')} <span className="text-[#F88379]">{t('headingHighlight1')}</span><br></br>
               {t('headingPart2')} <span className="text-[#F88379]">{t('headingHighlight2')}</span>
@@ -23,7 +23,8 @@ export default function ConnectionVerification() {
 
             {/* Description */}
             <p
-              className="font-poppins font-medium sm:font-normal text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-[var(--color-text)] dark:text-white/70"
+              className="font-poppins font-medium sm:font-normal leading-relaxed text-[var(--color-text)] dark:text-white/70"
+              style={{ fontSize: "clamp(14px, 1.2vw, 20px)" }}
             >
               {t('desc')}
             </p>
@@ -95,8 +96,8 @@ function FeatureItem({ label, icon }: FeatureItemProps) {
         {icon}
       </div>
       <span
-        className="font-poppins font-medium text-xs sm:text-sm md:text-base lg:text-lg leading-tight sm:leading-snug"
-        style={{ color: "var(--color-primary)" }}
+        className="font-poppins font-medium leading-tight sm:leading-snug"
+        style={{ color: "var(--color-primary)", fontSize: "clamp(12px, 1vw, 18px)" }}
       >
         {label}
       </span>

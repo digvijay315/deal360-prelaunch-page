@@ -1,7 +1,14 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { ReactNode } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 // Image paths
 const firstslidebg = "/smartfilterbg1.png";
@@ -200,7 +207,6 @@ function Slide({
   mobileBgImage,
   isThirdSlide,
 }: SlideProps) {
-
   const locale = useLocale();
   const isArabic = locale === "ar";
   const textColor = desktopKeyImage === "/smartfilterbg3.png" ? "#4B4B4B" : "white";
@@ -211,39 +217,45 @@ function Slide({
 
     <>
       {/* ===================== DESKTOP ===================== */}
-      <div className="hidden md:flex relative w-full h-[700px] py-4 font-[Poppins]">
-
+<div
+  className={`hidden md:flex relative w-full min-h-[600px] py-4 font-[Poppins] overflow-visible ${
+    desktopKeyImage === "/smartfilterbg3.png"
+      ? "md:mb-0"
+      : "md:-mb-20"
+  }`}
+>
         {/* ── Left gradient column ── */}
         <div
-          className="flex flex-col justify-center relative z-30 mt-10 mb-10 w-full lg:w-[56%] py-[60px] lg:py-[80px]"
-          style={{ 
-            background: desktopGradient, 
-            padding: "clamp(40px, 6vw, 80px) clamp(20px, 4vw, 100px)",
+          className="flex flex-col justify-center relative z-30 mt-10 mb-10 w-full lg:w-[56%] py-[60px] lg:py-[80px] overflow-visible"
+          style={{
+            background: desktopGradient,
+            padding: "clamp(40px, 4vw, 80px) clamp(40px, 6vw, 120px)",
           }}
         >
-          <div className="lg:pr-[80px] xl:pr-[120px]">
-
+          <div className="lg:pr-[80px] xl:pr-[120px] overflow-visible">
             {/* Title */}
             <h2
-              className="font-medium mb-6 lg:mb-8 max-w-[700px] leading-[110%] text-[clamp(24px,3.5vw,64px)]"
-              style={{ color: textColor }}
+              className="font-medium mb-8 max-w-[750px] leading-[110%]"
+              style={{
+                color: textColor,
+                fontSize: "clamp(32px, 3.5vw, 64px)"
+              }}
             >
               {slideTitle}
               <br />
-
               {desktopKeyImage === "/smartfilterbg2.png" && (
                 <span className="text-[#4B4B4B]"> {isArabic ? "التحكم" : "Control."}</span>
               )}
             </h2>
 
-
-
-
             {/* Subtitle */}
             {desktopKeyImage === "/smartfilterbg3.png" && (
               <p
-                className="font-medium mb-4 max-w-[661px] leading-[150%] text-[clamp(14px,1.05vw,20px)]"
-                style={{ color: textColor }}
+                className="font-medium mb-4 max-w-[661px] leading-[150%]"
+                style={{
+                  color: textColor,
+                  fontSize: "clamp(15px, 1.1vw, 20px)"
+                }}
               >
                 {locale === "ar"
                   ? "التحكم الكامل في المحفظة"
@@ -252,31 +264,38 @@ function Slide({
             )}
 
             {/* Body */}
-            <p
-              className={`font-normal mb-4 leading-[150%] text-[clamp(14px,1.05vw,20px)] ${desktopKeyImage === "/smartfilterbg2.png"
-                ? "max-w-[495.57px]"
-                : "max-w-[711px]"
-                }`}
-              style={{ color: textColor }}
-            >
-              {slideDescription}
-            </p>
-
-            {/* Optional */}
-            {slideDeal360Text && (
+            <div className="space-y-6 mb-10">
               <p
-                className="font-normal mb-10 max-w-[661px] leading-[150%] text-[clamp(14px,1.05vw,20px)]"
-                style={{ color: textColor }}
+                className={`font-normal leading-[160%] ${desktopKeyImage === "/smartfilterbg2.png" ? "max-w-[550px]" : "max-w-[711px]"}`}
+                style={{
+                  color: textColor,
+                  fontSize: "clamp(15px, 1.1vw, 19px)"
+                }}
               >
-                {slideDeal360Text}
+                {slideDescription}
               </p>
-            )}
+
+              {slideDeal360Text && (
+                <p
+                  className="font-normal max-w-[661px] leading-[160%]"
+                  style={{
+                    color: textColor,
+                    fontSize: "clamp(15px, 1.1vw, 19px)"
+                  }}
+                >
+                  {slideDeal360Text}
+                </p>
+              )}
+            </div>
 
             {/* Section label */}
             {desktopKeyImage === "/smartfilterbg3.png" && (
               <p
-                className="font-medium mb-4 max-w-[661px] leading-[150%] text-[clamp(14px,1.05vw,20px)]"
-                style={{ color: textColor }}
+                className="font-medium mb-6 max-w-[661px] leading-[150%]"
+                style={{
+                  color: textColor,
+                  fontSize: "clamp(15px, 1.1vw, 20px)"
+                }}
               >
                 {isArabic
                   ? "مع مدير العقارات يمكنك:"
@@ -285,17 +304,20 @@ function Slide({
             )}
 
             {/* Bullets */}
-            <div className="flex flex-col gap-3 lg:gap-4">
+            <div className="flex flex-col gap-4 lg:gap-5">
               {bulletsDesktop.map((text, i) => (
-                <div key={i} className="flex items-center gap-3">
+                <div key={i} className="flex items-center gap-4">
                   {desktopKeyImage === "/smartfilterbg3.png" ? (
                     <CheckIconDesktop />
                   ) : (
                     <CheckIconDesktopwhite />
                   )}
                   <span
-                    className="font-medium text-[clamp(13px,1.05vw,20px)]"
-                    style={{ color: textColor }}
+                    className="font-medium"
+                    style={{
+                      color: textColor,
+                      fontSize: "clamp(15px, 1.1vw, 19px)"
+                    }}
                   >
                     {text}
                   </span>
@@ -306,8 +328,11 @@ function Slide({
             {/* Footer */}
             {desktopKeyImage === "/smartfilterbg3.png" && (
               <p
-                className="font-medium mt-4 max-w-[661px] leading-[150%] text-[clamp(14px,1.05vw,20px)]"
-                style={{ color: textColor }}
+                className="font-medium mt-10 max-w-[661px] leading-[150%]"
+                style={{
+                  color: textColor,
+                  fontSize: "clamp(15px, 1.1vw, 20px)"
+                }}
               >
                 {isArabic
                   ? "مصمم للمستثمرين الذين يبحثون عن الوضوح — لا عن جداول البيانات."
@@ -318,7 +343,7 @@ function Slide({
         </div>
 
         {/* ── Right image column ── */}
-        <div className="relative flex-1 h-[700px]">
+        <div className="relative flex-1 min-h-[600px]">
 
           {/* Background */}
           <img
@@ -509,126 +534,84 @@ const SLIDES_DATA = [
 ];
 
 export default function SmarterFilters() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlay, setIsAutoPlay] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoPlay) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
-    }, 2000); // Auto-slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, [isAutoPlay]);
-
-  const slide = SLIDES_DATA[currentSlide];
-
-  const handlePrevClick = () => {
-    setCurrentSlide((prev) => (prev - 1 + SLIDES_DATA.length) % SLIDES_DATA.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(true), 8000); // Resume auto-play after 8s
-  };
-
-  const handleNextClick = () => {
-    setCurrentSlide((prev) => (prev + 1) % SLIDES_DATA.length);
-    setIsAutoPlay(false);
-    setTimeout(() => setIsAutoPlay(true), 8000); // Resume auto-play after 8s
-  };
-
-
-
   const t = useTranslations("smartFilter");
-
-
-
-
-  // Get current slide translations
-  const slideTitle = t(`slides.${currentSlide}.slideTitle`);
-  const slideDescription = t(`slides.${currentSlide}.slideDescription`);
-  const slideDeal360Text = t(`slides.${currentSlide}.slideDeal360Text`);
-
-  // Bullets as an array
-  const bullets = [
-    t(`slides.${currentSlide}.bullets.bullet1`),
-    t(`slides.${currentSlide}.bullets.bullet2`),
-    t(`slides.${currentSlide}.bullets.bullet3`),
-    t(`slides.${currentSlide}.bullets.bullet4`) // optional, filter undefined
-  ].filter(Boolean);
+  const locale = useLocale();
 
   return (
-    <div className="w-full bg-[#EDEEF0] md:mt-20 md:mb-30 mt-10 relative dark:bg-black font-sans">
-      {/* Slide container with smooth transition */}
-      <div className="transition-opacity duration-500">
-        <div className="relative flex items-center justify-center">
-          {/* Previous Arrow - Desktop */}
-          <button
-            onClick={handlePrevClick}
-            className="hidden md:flex absolute left-6 z-50 p-2 hover:opacity-70 transition-opacity"
-            aria-label="Previous slide"
-          >
-            <ArrowIconPrev />
-          </button>
-
-          {/* Slide Content */}
-          <Slide
-            slideTitle={slideTitle}
-            slideDescription={slideDescription}
-            slideDeal360Text={slideDeal360Text}
-            bulletsDesktop={bullets}
-            bulletsMobile={bullets}
-            desktopGradient={slide.desktopGradient}
-            mobileGradient={slide.mobileGradient}
-            desktopKeyImage={slide.desktopKeyImage}
-            desktopPhoneImage={slide.desktopPhoneImage}
-            mobilePhoneImage={slide.mobilePhoneImage}
-            mobileBgImage={slide.mobileBgImage}
-          />
-
-          {/* Next Arrow - Desktop */}
-          <button
-            onClick={handleNextClick}
-            className="hidden md:flex absolute right-6 z-50 p-2 hover:opacity-70 transition-opacity"
-            aria-label="Next slide"
-          >
-            <ArrowIconNext />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Arrow Navigation */}
-      {/* <div className="md:hidden flex justify-between items-center px-4 py-4">
-        <button
-          onClick={handlePrevClick}
-          className="p-2 hover:opacity-70 transition-opacity"
-          aria-label="Previous slide"
+    <div className="w-full bg-[#EDEEF0] md:mt-20 md:-mb-0 mt-10 relative dark:bg-black font-sans group overflow-visible">
+      <div className="relative overflow-visible">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          speed={1000}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+            el: '.smarter-pagination',
+          }}
+          navigation={{
+            nextEl: '.smarter-next',
+            prevEl: '.smarter-prev',
+          }}
+          className="w-full !overflow-visible"
+          style={{ overflow: 'visible' }}
         >
+          {SLIDES_DATA.map((slide, index) => {
+            // Get current slide translations
+            const slideTitle = t(`slides.${index}.slideTitle`);
+            const slideDescription = t(`slides.${index}.slideDescription`);
+            const slideDeal360Text = t(`slides.${index}.slideDeal360Text`);
+
+            // Bullets as an array
+            const bullets = [
+              t(`slides.${index}.bullets.bullet1`),
+              t(`slides.${index}.bullets.bullet2`),
+              t(`slides.${index}.bullets.bullet3`),
+              t(`slides.${index}.bullets.bullet4`)
+            ].filter(Boolean);
+
+            return (
+              <SwiperSlide key={index} style={{ overflow: 'visible' }}>
+                <Slide
+                  slideTitle={slideTitle}
+                  slideDescription={slideDescription}
+                  slideDeal360Text={slideDeal360Text}
+                  bulletsDesktop={bullets}
+                  bulletsMobile={bullets}
+                  desktopGradient={slide.desktopGradient}
+                  mobileGradient={slide.mobileGradient}
+                  desktopKeyImage={slide.desktopKeyImage}
+                  desktopPhoneImage={slide.desktopPhoneImage}
+                  mobilePhoneImage={slide.mobilePhoneImage}
+                  mobileBgImage={slide.mobileBgImage}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+
+        {/* Custom Pagination Dot Indicators */}
+        <div className="smarter-pagination absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30 pointer-events-auto" />
+
+        {/* Navigation Arrows */}
+        <button className="smarter-prev hidden md:flex absolute left-4 lg:left-10 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
           <ArrowIconPrev />
         </button>
 
-       
-        <div className="flex justify-center gap-2">
-          {SLIDES_DATA.map((_, index) => (
-            <div
-              key={index}
-              className={`transition-all duration-300 rounded-full ${
-                index === currentSlide
-                  ? "bg-gray-800 w-2 h-2"
-                  : "bg-gray-400 w-2 h-2"
-              }`}
-              aria-label={`Slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        <button
-          onClick={handleNextClick}
-          className="p-2 hover:opacity-70 transition-opacity"
-          aria-label="Next slide"
-        >
+        <button className="smarter-next hidden md:flex absolute right-4 lg:right-10 top-1/2 -translate-y-1/2 z-40 items-center justify-center w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all opacity-0 group-hover:opacity-100 shadow-lg">
           <ArrowIconNext />
         </button>
-      </div> */}
+      </div>
+
+      {/* Mobile Indicator (Optional additional) */}
+      <div className="md:hidden flex justify-center items-center py-4">
+        <div className="smarter-pagination-mobile flex gap-2" />
+      </div>
     </div>
   );
 }

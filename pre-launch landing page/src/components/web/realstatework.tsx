@@ -12,14 +12,20 @@ export default function RealstateWork() {
         {/* Left: Text Content */}
         <div className="flex items-center w-full lg:w-[52%] px-6 sm:px-10 lg:pl-[10%] lg:pr-6 py-16 lg:py-0 shrink-0">
           <div className="flex flex-col gap-10 lg:gap-[72px]">
-            <h1 className="font-semibold text-[34px] sm:font-medium sm:text-5xl lg:text-[64px] leading-[110%]">
+            <h1 
+              className="font-semibold sm:font-medium leading-[110%]"
+              style={{ fontSize: "clamp(34px, 4vw, 64px)" }}
+            >
               <span className="text-[#4B4B4B] dark:text-white">{t("heading.part1")} </span>
               <span className="text-[var(--color-primary)]  2xl:whitespace-nowrap">
                 {t("heading.highlight")}
               </span>
               <span className="text-[#4B4B4B]">{t("heading.part3")}</span>
             </h1>
-            <p className="font-poppins font-normal text-base sm:text-lg lg:text-[20px] leading-[150%] text-color-text max-w-[827px] text-[var(--color-text)] dark:text-white/70">
+            <p 
+              className="font-poppins font-normal leading-[150%] text-color-text max-w-[827px] text-[var(--color-text)] dark:text-white/70"
+              style={{ fontSize: "clamp(16px, 1.2vw, 20px)" }}
+            >
               {t("body")}
             </p>
           </div>

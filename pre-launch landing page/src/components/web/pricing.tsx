@@ -12,19 +12,28 @@ export default function Pricing() {
         <div className="flex flex-col justify-center items-center gap-6 text-center w-full">
 
           {/* Heading */}
-          <h1 className="text-[34px] sm:text-5xl lg:text-6xl xl:text-[64px] font-medium leading-[110%] break-words text-[var(--color-text)] dark:text-white">
+          <h1 
+            className="font-medium leading-[110%] md:max-w-3xl 2xl:max-w-4xl break-words text-[var(--color-text)] dark:text-white"
+            style={{ fontSize: "clamp(34px, 4vw, 64px)" }}
+          >
             <span>{t("heading1")} </span>
             <span className="text-[var(--color-primary)]">{t("headingHighlight")}</span>
             <span> {t("heading2")}</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-base sm:text-lg lg:text-xl font-normal text-[var(--color-text-secondary)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-full md:max-w-2xl break-words">
+          <p 
+            className="font-normal text-[var(--color-text-secondary)] text-[var(--color-text)] dark:text-white/70 leading-[150%] max-w-full md:max-w-3xl break-words 2xl:max-w-5xl "
+            style={{ fontSize: "clamp(16px, 1.2vw, 20px)" }}
+          >
             {t("subtitle")}
           </p>
 
           {/* Early registration */}
-          <h2 className="text-2xl sm:text-3xl lg:text-[32px] font-medium leading-[110%] text-[var(--color-primary)] break-words">
+          <h2 
+            className="font-medium leading-[110%] text-[var(--color-primary)] break-words"
+            style={{ fontSize: "clamp(24px, 2vw, 32px)" }}
+          >
             {t("earlyRegistrationOpen")}
           </h2>
 
