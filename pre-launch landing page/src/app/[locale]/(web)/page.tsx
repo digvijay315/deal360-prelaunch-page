@@ -4,24 +4,24 @@
 import dynamic from "next/dynamic";
 
 
-// import SmarterFilters from '@/components/web/SmarterFilters'
+import SmarterFilters from '@/components/web/SmarterFilters'
 
-const SmarterFilters = dynamic(() => import("@/components/web/SmarterFilters"), {
-  ssr: false,
-});
+// const SmarterFilters = dynamic(() => import("@/components/web/SmarterFilters"), {
+//   ssr: false,
+// });
 
 
 import WhatsComing from '@/components/web/WhatsComing'
-// import HeroSection from '@/components/web/HeroSection'
+import HeroSection from '@/components/web/HeroSection'
 
-const HeroSection = dynamic(() => import("@/components/web/HeroSection"), {
-  ssr: false,
-});
-// import StartWithRequirements from '@/components/web/startwith_requirments'
+// const HeroSection = dynamic(() => import("@/components/web/HeroSection"), {
+//   ssr: false,
+// });
+import StartWithRequirements from '@/components/web/startwith_requirments'
 
-const StartWithRequirements = dynamic(() => import("@/components/web/startwith_requirments"), {
-  ssr: false,
-});
+// const StartWithRequirements = dynamic(() => import("@/components/web/startwith_requirments"), {
+//   ssr: false,
+// });
 import ForAgents from '@/components/web/for_agents'
 import ForBrockerage from '@/components/web/for_brokerage'
 import RealstateWork from '@/components/web/realstatework'
@@ -73,36 +73,7 @@ export default function Home() {
       <RewardsCard />
 
 
-      {/* Buying Intent */}
-      {/* <section id="buying-intent">
-        <PropertyIntent />
-      </section> */}
-
-      {/* <VerificationSection /> */}
-
-      {/* Agent */}
-      {/* <section id="agent">
-        <AgentsSection />
-      </section> */}
-
-      {/* Brokerages */}
-      {/* <section id="brokerages">
-        <Brokerage />
-      </section>
-      <SmarterFilters/>
-      <OwnersInControl/>
-      <PropertyManager/>
-      <NotAPortalSection/> */}
-      {/* Investor */}
-      {/* <section id="investor">
-        <PortfolioSection />
-      </section> */}
-
-      {/* <Joindeal />
-      <section id="plans">
-        <PricingSection />
-      </section>
-      <IncentivesSection /> */}
+  
     </div>
   )
 }
