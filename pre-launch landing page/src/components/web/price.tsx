@@ -1,3 +1,5 @@
+"use client"
+
 import AgentPricingSection from "./agent_pricingcard";
 import BrokeragePricingSection from "./brokerage_pricingcard";
 import CustomPlans from "./custom_plans";

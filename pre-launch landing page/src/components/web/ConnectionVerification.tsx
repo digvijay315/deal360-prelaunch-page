@@ -1,3 +1,5 @@
+"use client"
+
 import { publicAsset } from "@/lib/assetUrl";
 import { useTranslations } from 'next-intl'
 
