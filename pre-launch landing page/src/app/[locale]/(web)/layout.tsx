@@ -1,7 +1,18 @@
-export default function WebLayout({
+import Footer from "@/components/web/Footer";
+import Navigation from "@/components/web/Navigation";
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div>
+      <Navigation />
+      <div>
+        {children}
+      </div>
+      <Footer />
+    </div>
+  );
 }

@@ -7,9 +7,6 @@ import { ThemeProvider } from '@/components/provider/ThemeProvider'
 import { routing } from '@/i18n/routing'
 import '../globals.css'
 
-import Navigation from "@/components/web/Navigation";
-import Footer from "@/components/web/Footer";
-
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -59,17 +56,11 @@ export default async function LocaleLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-<body className={`${fontClass} antialiased bg-[#FBFFFE] dark:bg-[#0F1419]`}>
-  <NextIntlClientProvider messages={messages}>
-    <ThemeProvider>
-      <Navigation />   {/* ✅ add */}
-      
-      {children}
-      
-      <Footer />       {/* ✅ add */}
-    </ThemeProvider>
-  </NextIntlClientProvider>
-</body>
+      <body className={`${fontClass} antialiased bg-[#FBFFFE] dark:bg-[#0F1419]`}>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>{children}</ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
     </html>
   )
 }
